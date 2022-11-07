@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/images">
+        <file alias="pr">images/prisonnier.png</file>
+        <file alias="m">images/mur.jpeg</file>
+        <file alias="c">images/cellule.png</file>
+        <file alias="po">images/policier.png</file>
+        <file alias="fin">images/fin.png</file>
+        <file alias="pdg">images/prison.jpeg</file>
+        <file alias="deb">images/SOKO-BAGNE.jpg</file>
+    </qresource>
+</RCC>

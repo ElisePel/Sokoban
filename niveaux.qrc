@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/niveaux">
+        <file alias="n1">niveaux/niv1.txt</file>
+        <file alias="n3">niveaux/niv3.txt</file>
+        <file alias="n2">niveaux/niv2.txt</file>
+        <file alias="n4">niveaux/niv4.txt</file>
+    </qresource>
+</RCC>
