@@ -1,19 +1,20 @@
 package code;
+
 /**
  * permet d'instancier un personnage
  * @author Claire MÃ©ziÃ¨res et Elise Pellegry
  * @version 1.0 08/03/2022
  */
-public class Personnage {
+
+
+public class CaseArrivee extends Case{
 	/**
 	 * attributs
 	 * i : correspond Ã  l'abscisse
 	 * j : correspond Ã  l'ordonnÃ©e
 	 */
-	private int abcissePersonnage;
-    private int ordonneePersonnage;
-    private int hauteurPersonnage;
-    private int largeurPersonnage;
+	private Case c;
+	private boolean arrivee;
 
 	/**
 	 * Constructeur de la classe Personnage
@@ -22,12 +23,10 @@ public class Personnage {
 	 * @param h hauteur du personnage
 	 * @param l largeur du personnage
 	 */
-	public Personnage(int aP, int oP,int h, int l)
+	public CaseArrivee(int aC, int oC,int h, int l, boolean b)
 	{
-    abcissePersonnage=aP;
-    ordonneePersonnage=oP;
-    hauteurPersonnage=h;
-    largeurPersonnage=l;
+		super(aC, oC, h, l);
+		arrivee = b;
 	}
 
 
@@ -36,7 +35,7 @@ public class Personnage {
 	 * @return l'abscisse 
 	 */
 	public int getAbcisse() {
-		return abcissePersonnage;
+		return c.getabcisseCase();
 	}
 
 
@@ -44,31 +43,21 @@ public class Personnage {
 	 * @return l'ordonne 
 	 */
 	public int getOrdonnee() {
-		return ordonneePersonnage;
+		return c.getordonneeCase();
 	}
 
 	/**
 	 * @return la hauteur 
 	 */
 	public int getHauteur() {
-		return hauteurPersonnage;
+		return c.gethauteurCase();
 	}
 
 	/**
 	 * @return la largeur 
 	 */
 	public int getLargeur() {
-		return largeurPersonnage;
-	}
-
-	/**
-	 * permet de se dÃ©placer
-	 * x : correspond Ã  l'abssice
-	 * y : correspond Ã  l'ordonnee
-	 */
-	public void deplacer(int x, int y) {
-		abcissePersonnage+=x;
-    	ordonneePersonnage+=y;
+		return c.getlargeurCase();
 	}
 
 	
@@ -77,8 +66,8 @@ public class Personnage {
 	 * x : correspond Ã  l'abssice
 	 * y : correspond Ã  l'ordonnee
 	 */
-	public void setCoordonneesPerso(int x, int y) {
-    	abcissePersonnage=x;
-    	ordonneePersonnage=y;
+	public void setCoordonneesCaseArrivee(int x, int y) {
+    	c.setabcisseCase(x);
+    	c.setordonneeCase(y);
 	}
 }

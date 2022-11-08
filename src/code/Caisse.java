@@ -1,19 +1,24 @@
 package code;
+
 /**
  * permet d'instancier un personnage
  * @author Claire MÃ©ziÃ¨res et Elise Pellegry
  * @version 1.0 08/03/2022
  */
-public class Personnage {
+
+
+public class Caisse {
 	/**
 	 * attributs
 	 * i : correspond Ã  l'abscisse
 	 * j : correspond Ã  l'ordonnÃ©e
 	 */
-	private int abcissePersonnage;
-    private int ordonneePersonnage;
-    private int hauteurPersonnage;
-    private int largeurPersonnage;
+	
+	private int abcisseCaisse;
+	private int ordonneeCaisse;
+	private int hauteurCaisse;
+	private int largeurCaisse;
+	private boolean arrivee;
 
 	/**
 	 * Constructeur de la classe Personnage
@@ -22,12 +27,13 @@ public class Personnage {
 	 * @param h hauteur du personnage
 	 * @param l largeur du personnage
 	 */
-	public Personnage(int aP, int oP,int h, int l)
+	public Caisse(int aC, int oC,int h, int l)
 	{
-    abcissePersonnage=aP;
-    ordonneePersonnage=oP;
-    hauteurPersonnage=h;
-    largeurPersonnage=l;
+	    abcisseCaisse=aC;
+	    ordonneeCaisse=oC;
+	    hauteurCaisse=h;
+	    largeurCaisse=l;
+	    arrivee=false;
 	}
 
 
@@ -36,7 +42,7 @@ public class Personnage {
 	 * @return l'abscisse 
 	 */
 	public int getAbcisse() {
-		return abcissePersonnage;
+		return abcisseCaisse;
 	}
 
 
@@ -44,21 +50,21 @@ public class Personnage {
 	 * @return l'ordonne 
 	 */
 	public int getOrdonnee() {
-		return ordonneePersonnage;
+		return ordonneeCaisse;
 	}
 
 	/**
 	 * @return la hauteur 
 	 */
 	public int getHauteur() {
-		return hauteurPersonnage;
+		return hauteurCaisse;
 	}
 
 	/**
 	 * @return la largeur 
 	 */
 	public int getLargeur() {
-		return largeurPersonnage;
+		return largeurCaisse;
 	}
 
 	/**
@@ -67,8 +73,8 @@ public class Personnage {
 	 * y : correspond Ã  l'ordonnee
 	 */
 	public void deplacer(int x, int y) {
-		abcissePersonnage+=x;
-    	ordonneePersonnage+=y;
+		abcisseCaisse+=x;
+    	ordonneeCaisse+=y;
 	}
 
 	
@@ -77,8 +83,26 @@ public class Personnage {
 	 * x : correspond Ã  l'abssice
 	 * y : correspond Ã  l'ordonnee
 	 */
-	public void setCoordonneesPerso(int x, int y) {
-    	abcissePersonnage=x;
-    	ordonneePersonnage=y;
+	public void setCoordonneesCaisse(int x, int y) {
+    	abcisseCaisse=x;
+    	ordonneeCaisse=y;
+	}
+	
+	/**
+	 * @brief Caisse::setArrivee
+	 * @param a
+	 */
+	public void setArrivee(boolean a)
+	{
+	    arrivee=a;
+	}
+
+	/**
+	 * @brief Caisse::getArrivee
+	 * @return true si la caisse est sur une case arrivée, false sinon
+	 */
+	public boolean getArrivee()
+	{
+	    return arrivee;
 	}
 }
