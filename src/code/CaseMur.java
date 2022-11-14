@@ -26,7 +26,44 @@ public class CaseMur extends Case{
 	public CaseMur(int aC, int oC,int h, int l)
 	{
 		super(aC, oC, h, l);
-
+	}
+	/**
+	 * @return l'abscisse 
+	 */
+	public int getAbcisse() {
+		return c.getabcisseCase();
 	}
 
+
+	/**
+	 * @return l'ordonne 
+	 */
+	public int getOrdonnee() {
+		return c.getordonneeCase();
+	}
+
+	/**
+	 * @return la hauteur 
+	 */
+	public int getHauteur() {
+		return c.gethauteurCase();
+	}
+
+	/**
+	 * @return la largeur 
+	 */
+	public int getLargeur() {
+		return c.getlargeurCase();
+	}
+
+	
+	/**
+	 * met Ã  jour les coordonnÃ©es
+	 * x : correspond Ã  l'abssice
+	 * y : correspond Ã  l'ordonnee
+	 */
+	public void setCoordonneesCaseArrivee(int x, int y) {
+    	c.setabcisseCase(x);
+    	c.setordonneeCase(y);
+	}
 }

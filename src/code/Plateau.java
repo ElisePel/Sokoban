@@ -18,17 +18,17 @@ public class Plateau {
 	protected int NombreElements;
 	protected int NombreMurs;
     protected Personnage perso;
-    protected boolean gagne=false; 
-	protected Caisse listeCaisse;
-	protected CaseArrivee listeCaseArrivee; 	
-	protected CaseMur listeMur;
+    protected boolean gagne = false;
+    protected Caisse [] listeCaisse;
+	protected CaseArrivee [] listeCaseArrivee; 	
+	protected CaseMur [] listeMur;
 	
 	
 	/**
 	 * Constructeur par dÃ©fault de la classe Plateau
 	 */
 	public Plateau() {
-		List
+		
 		Caisse[] listeCaisse = new Caisse[NombreCaisses];
 		CaseArrivee[] listeCaseArrivee = new CaseArrivee[NombreCaisses];
 		CaseMur[] listeMur = new CaseMur[NombreElements-1-2*NombreCaisses];
@@ -39,7 +39,7 @@ public class Plateau {
 	 * Constructeur par dÃ©fault de la classe Plateau
 	 */
 	public boolean testerSiGagner() {
-		boolean b=true;
+		boolean b = true;
 	    int i=0;
 	    while (b==true && i<NombreCaisses)
 	    {
@@ -51,30 +51,6 @@ public class Plateau {
 	 }
 	
 	
-	public void Plateau::afficher(QPainter * p)
-	{
-	    p->drawPixmap(perso.getAbcisse(),perso.getOrdonnee(),perso.getHauteur(),perso.getLargeur(),QPixmap(":/images/po"));
-	    for (int i=0;i<NombreCaisses;i++)
-	    {
-	       p->drawPixmap(listeCaisse[i].getAbcisse(),listeCaisse[i].getOrdonnee(),listeCaisse[i].getHauteur(),listeCaisse[i].getLargeur(),QPixmap(":/images/pr"));
-	       p->drawPixmap(listeCaseArrivee[i].getAbcisse(),listeCaseArrivee[i].getOrdonnee(),listeCaseArrivee[i].getHauteur(),listeCaseArrivee[i].getLargeur(),QPixmap(":/images/c"));
-	    }
-	    for (int l=0;l<NombreMurs;l++)
-	    {
-	       p->drawPixmap(listeMur[l].getAbcisse(),listeMur[l].getOrdonnee(),listeMur[l].getHauteur(),listeMur[l].getLargeur(),QPixmap(":/images/m"));
-	    }
-	}
-
-	void Plateau::afficherGagner(QPainter *p)
-	{
-	    p->drawPixmap(225,125,200,200,QPixmap(":/images/fin"));
-	}
-
-	bool Plateau::getGagne()
-	{
-	    return gagne;
-	}
-
 
 	/**
 	 * @brief Plateau::VoisinPersoGauche
