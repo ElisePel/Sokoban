@@ -1,5 +1,8 @@
 package code;
 
+import java.awt.Graphics;
+
+import javax.swing.ImageIcon;
 
 /**
  * permet d'instancier un plateau
@@ -33,6 +36,7 @@ public class Plateau {
 		CaseArrivee[] listeCaseArrivee = new CaseArrivee[NombreCaisses];
 		CaseMur[] listeMur = new CaseMur[NombreElements-1-2*NombreCaisses];
 	}
+	
 	
 	
 	/**
@@ -498,7 +502,25 @@ public class Plateau {
 	    }
 	}
 	
-
 	
+	public void afficher(Graphics g){
+		ImageIcon personnage = new ImageIcon(":/test.png");
+		ImageIcon caisse = new ImageIcon(":/images/caisse");
+		ImageIcon mur = new ImageIcon(":/images/mur");
+		ImageIcon arrivee = new ImageIcon(":/images/arrivee");
+        
+        g.drawImage(personnage.getImage(), perso.getAbcisse(),perso.getOrdonnee(),perso.getHauteur(),perso.getLargeur(),null);
+/*		
+	    for (int i=0;i<NombreCaisses;i++){
+	       g.drawImage(caisse.getImage(), listeCaisse[i].getAbcisse(),listeCaisse[i].getOrdonnee(),listeCaisse[i].getHauteur(),listeCaisse[i].getLargeur(),null);
+	       g.drawImage(arrivee.getImage(), listeCaseArrivee[i].getAbcisse(),listeCaseArrivee[i].getOrdonnee(),listeCaseArrivee[i].getHauteur(),listeCaseArrivee[i].getLargeur(), null);
+	    }
+	    for (int l=0;l<NombreMurs;l++){
+	    	g.drawImage(mur.getImage(), listeMur[l].getAbcisse(),listeMur[l].getOrdonnee(),listeMur[l].getHauteur(),listeMur[l].getLargeur(),null);
+	    }*/
+	}
+	
+	
+
 	
 }

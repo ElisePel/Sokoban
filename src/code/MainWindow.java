@@ -1,20 +1,32 @@
 package code;
 
 import java.awt.EventQueue;
+
 import javax.swing.JButton;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+//import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Graphics;
+import java.awt.Image;
+
+import java.awt.Color;
+//import java.awt.Point;
+import javax.swing.ImageIcon;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
+
 
 public class MainWindow extends JFrame {
 
-	private JPanel contentPane;
+	private MyPanel myPanel;
 	private JButton btnJouer;
 	private JButton btnNiveaux;
 	private JButton btnAide;
+	private Plateau plateau;
+	private Personnage perso;
 
 	/**
 	 * Launch the application.
@@ -38,37 +50,84 @@ public class MainWindow extends JFrame {
 	public MainWindow() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		// On modifie le ContentPane
+		myPanel = new MyPanel(this) ;
+		myPanel.setLayout(null);
+		myPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		//...
 		setTitle("Sokoban");
 
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
 		
 		JButton btnJouer = new JButton("Jouer");
 		btnJouer.setBounds(30, 200, 70, 21);
-		contentPane.add(btnJouer);
+		myPanel.add(btnJouer);
 		
 		JButton btnNiveaux = new JButton("Niveaux");
 		btnNiveaux.setBounds(120, 200, 80, 21);
-		contentPane.add(btnNiveaux);
+		myPanel.add(btnNiveaux);
 		
 		JButton btnAide = new JButton("Aide");
 		btnAide.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				private void menuItemAProposActionPerformed(java.awt.event.ActionEvent evt) {
-	
 					 // Création de la boite en mémoire
 					 FenetreAide AideFenetre = new FenetreAide();
 	
 					 // Affichage de la boite
 					 AideFenetre.setVisible(true);
-				}
 			}
-		};
+		});
+
 		btnAide.setBounds(220, 200, 70, 21);
-		contentPane.add(btnAide);
+		myPanel.add(btnAide);
+		this.setContentPane(myPanel);
 
 	}
+	
 
+	
+	public void dessiner(Graphics g)
+	{
+	 Graphics bufferGraphics;
+	 Image offscreen;
+	 // On crée une image en mémoire de la taille du ContentPane
+	 offscreen = createImage(this.getContentPane().getWidth(),this.getContentPane().getHeight());
+	 // On récupère l'objet de type Graphics permettant de dessiner dans cette image
+	 bufferGraphics = offscreen.getGraphics();
+	 // On colore le fond de l'image en blanc
+	 bufferGraphics.setColor(Color.GRAY);
+	 bufferGraphics.fillRect(0,0,this.getContentPane().getWidth(),this.getContentPane().getHeight());
+
+	 // On dessine les objets graphiques de la liste dans l'image en mémoire pour éviter les
+	 // problèmes de scintillements
+	 
+	 //if (listeObjets != null)
+	 //for (CObjetGraphique o : listeObjets)
+	 //o.dessiner(bufferGraphics);
+	 bufferGraphics.setColor(Color.RED);
+	 bufferGraphics.fillRect(0,0,50,50);
+	 
+	// plateau.afficher(bufferGraphics);
+	 
+	 // On afficher l'image mémoire à l'écran
+	 g.drawImage(offscreen,0,0,null);
+	}
+
+	private void keyPressEvent(java.awt.event.KeyEvent e) {
+		switch(e.getKeyCode()) {
+			case (KeyEvent.VK_RIGHT ) :
+				plateau.DeplacementDroite();
+			case (KeyEvent.VK_LEFT):
+				plateau.DeplacementGauche();
+			case (KeyEvent.VK_UP ) :
+				plateau.DeplacementHaut();
+			case (KeyEvent.VK_DOWN):
+				plateau.DeplacementBas();
+		}
+		dessiner(this.getContentPane().getGraphics());
+	}
+	
+	
+	
 }
