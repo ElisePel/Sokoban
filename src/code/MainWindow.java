@@ -108,12 +108,23 @@ public class MainWindow extends JFrame {
 	 bufferGraphics.setColor(Color.RED);
 	 bufferGraphics.fillRect(0,0,50,50);
 	 
+	 //if (plateau!=null & plateau.getGagne()==false) {
+		 plateau.afficher(bufferGraphics);
+	 /*}
+	 else if (plateau.getGagne()==true){
+		 plateau.afficherGagner(bufferGraphics);
+	}*/
+	 
 	// plateau.afficher(bufferGraphics);
 	 
 	 // On afficher l'image mémoire à l'écran
 	 g.drawImage(offscreen,0,0,null);
+	 
+	 
 	}
 
+	    
+	
 	private void keyPressEvent(java.awt.event.KeyEvent e) {
 		switch(e.getKeyCode()) {
 			case (KeyEvent.VK_RIGHT ) :

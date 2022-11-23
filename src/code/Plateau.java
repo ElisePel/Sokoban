@@ -1,8 +1,8 @@
 package code;
 
-import java.awt.Graphics;
-
-import javax.swing.ImageIcon;
+import java.util.Scanner; //lire un fichier
+import java.awt.Graphics; 
+import javax.swing.ImageIcon; //afficher une image
 
 /**
  * permet d'instancier un plateau
@@ -36,6 +36,57 @@ public class Plateau {
 		CaseArrivee[] listeCaseArrivee = new CaseArrivee[NombreCaisses];
 		CaseMur[] listeMur = new CaseMur[NombreElements-1-2*NombreCaisses];
 	}
+	
+	public Plateau(String nomfichier) {
+		int type,a,o,i=0,k=0,m=0;
+		
+		Scanner sc = new Scanner(nomfichier);
+	   
+		while (sc.hasNextInt()){
+			NombreCaisses = sc.nextInt();
+            NombreElements = sc.nextInt();
+            NombreMurs = sc.nextInt();
+            listeCaisse = new Caisse[NombreCaisses];
+            listeCaseArrivee = new CaseArrivee[NombreCaisses];
+            listeMur = new CaseMur[NombreMurs];
+
+	            for (int j=0;j<NombreElements;j++){
+	                type = sc.nextInt();
+	                if (type==0){
+	                    a = sc.nextInt();
+	                    o = sc.nextInt();
+	                    perso.setCoordonneesPerso(a,o);
+	                }
+	                else if (type==1){
+	                    a = sc.nextInt();
+	                    o = sc.nextInt();
+	                    listeCaisse[i].setCoordonnees(a,o);
+	                    i++;
+	                }
+	                else if (type==2)
+	                {
+	                    a = sc.nextInt();
+	                    o = sc.nextInt();
+	                    listeCaseArrivee[k].setCoordonnees(a,o);
+	                    k++;
+	                }
+	                else if (type==3)
+	                {
+	                    a = sc.nextInt();
+	                    o = sc.nextInt();
+	                    listeMur[m].setCoordonnees(a,o);
+	                    m++;
+	                }
+	            }
+	         }
+			sc.close();
+	     /*else {
+	    	 System.out.println("Impossible d'ouvrir le fichier !");
+		}*/
+	}
+
+	
+	
 	
 	
 	
@@ -518,6 +569,16 @@ public class Plateau {
 	    for (int l=0;l<NombreMurs;l++){
 	    	g.drawImage(mur.getImage(), listeMur[l].getAbcisse(),listeMur[l].getOrdonnee(),listeMur[l].getHauteur(),listeMur[l].getLargeur(),null);
 	    }*/
+	}
+	
+	
+	public void afficherGagner(Graphics g){
+		ImageIcon fin = new ImageIcon(":/fin.png");
+	    g.drawImage(fin.getImage(), 225,125,200,200,null);
+	}
+	
+	public boolean getGagne(){
+	    return gagne;
 	}
 	
 	

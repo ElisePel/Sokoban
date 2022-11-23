@@ -83,7 +83,7 @@ public class Caisse {
 	 * x : correspond Ã  l'abssice
 	 * y : correspond Ã  l'ordonnee
 	 */
-	public void setCoordonneesCaisse(int x, int y) {
+	public void setCoordonnees(int x, int y) {
     	abcisseCaisse=x;
     	ordonneeCaisse=y;
 	}

@@ -62,7 +62,7 @@ public class CaseMur extends Case{
 	 * x : correspond Ã  l'abssice
 	 * y : correspond Ã  l'ordonnee
 	 */
-	public void setCoordonneesCaseArrivee(int x, int y) {
+	public void setCoordonnees(int x, int y) {
     	c.setabcisseCase(x);
     	c.setordonneeCase(y);
 	}
