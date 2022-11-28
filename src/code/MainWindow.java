@@ -110,7 +110,15 @@ public class MainWindow extends JFrame {
 	// bufferGraphics.fillRect(0,0,50,50);
 	 
 	 //if (plateau!=null & plateau.getGagne()==false) {
+<<<<<<< HEAD
 	 plateau.afficher(bufferGraphics);
+=======
+<<<<<<< HEAD
+		 /*plateau.afficher(bufferGraphics);
+=======
+	//	 plateau.afficher(bufferGraphics);
+>>>>>>> 7e048d6ed152dadfe69fd9739b22464defcdd31c
+>>>>>>> ceaf9ebd1a1187b7b0a347368e6e0dee02f64a80
 	 /*}
 	 else if (plateau.getGagne()==true){
 		 plateau.afficherGagner(bufferGraphics);
@@ -125,7 +133,7 @@ public class MainWindow extends JFrame {
 
 	/*    
 	
-	private void keyPressEvent(java.awt.event.KeyEvent e) {
+	/*private void keyPressEvent(java.awt.event.KeyEvent e) {
 		switch(e.getKeyCode()) {
 			case (KeyEvent.VK_RIGHT ) :
 				plateau.DeplacementDroite();
@@ -137,8 +145,13 @@ public class MainWindow extends JFrame {
 				plateau.DeplacementBas();
 		}
 		dessiner(this.getContentPane().getGraphics());
+<<<<<<< HEAD
+	}*/
+	
+=======
 	}
 	*/
+>>>>>>> 7e048d6ed152dadfe69fd9739b22464defcdd31c
 	
 	
 }
