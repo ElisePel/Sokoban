@@ -36,7 +36,7 @@ public class Plateau {
 		CaseArrivee[] listeCaseArrivee = new CaseArrivee[NombreCaisses];
 		CaseMur[] listeMur = new CaseMur[NombreElements-1-2*NombreCaisses];
 	}
-/*	
+	
 	public Plateau(String nomfichier) {
 		int type,a,o,i=0,k=0,m=0;
 		
@@ -83,7 +83,7 @@ public class Plateau {
 	     /*else {
 	    	 System.out.println("Impossible d'ouvrir le fichier !");
 		}*/
-	//}
+	}
 
 	
 	
@@ -555,12 +555,16 @@ public class Plateau {
 	
 	
 	public void afficher(Graphics g){
-		ImageIcon personnage = new ImageIcon(":/test.png");
-		ImageIcon caisse = new ImageIcon(":/images/caisse");
-		ImageIcon mur = new ImageIcon(":/images/mur");
-		ImageIcon arrivee = new ImageIcon(":/images/arrivee");
+		ImageIcon personnage = new ImageIcon("../policier.png");
+		ImageIcon caisse = new ImageIcon("../prisonnier.png");
+		ImageIcon mur = new ImageIcon("../mur.jpeg");
+		ImageIcon arrivee = new ImageIcon("../prison.jpeg");
         
-        g.drawImage(personnage.getImage(), perso.getAbcisse(),perso.getOrdonnee(),perso.getHauteur(),perso.getLargeur(),null);
+		//personnage = new ImageIcon("C:\\Users\\moi\\Desktop\\5A\\java\\prison.jpeg");
+		personnage = new ImageIcon("../prisonnier.png");
+		g.drawImage(personnage.getImage(), 200,100,50,50,null);
+
+        //g.drawImage(personnage.getImage(), perso.getAbcisse(),perso.getOrdonnee(),perso.getHauteur(),perso.getLargeur(),null);
 /*		
 	    for (int i=0;i<NombreCaisses;i++){
 	       g.drawImage(caisse.getImage(), listeCaisse[i].getAbcisse(),listeCaisse[i].getOrdonnee(),listeCaisse[i].getHauteur(),listeCaisse[i].getLargeur(),null);

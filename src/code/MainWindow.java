@@ -48,6 +48,7 @@ public class MainWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public MainWindow() {
+		plateau = new Plateau("nv1.txt");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 
@@ -96,8 +97,8 @@ public class MainWindow extends JFrame {
 	 // On récupère l'objet de type Graphics permettant de dessiner dans cette image
 	 bufferGraphics = offscreen.getGraphics();
 	 // On colore le fond de l'image en blanc
-	 bufferGraphics.setColor(Color.GRAY);
-	 bufferGraphics.fillRect(0,0,this.getContentPane().getWidth(),this.getContentPane().getHeight());
+	// bufferGraphics.setColor(Color.GRAY);
+	 //bufferGraphics.fillRect(0,0,this.getContentPane().getWidth(),this.getContentPane().getHeight());
 
 	 // On dessine les objets graphiques de la liste dans l'image en mémoire pour éviter les
 	 // problèmes de scintillements
@@ -105,11 +106,11 @@ public class MainWindow extends JFrame {
 	 //if (listeObjets != null)
 	 //for (CObjetGraphique o : listeObjets)
 	 //o.dessiner(bufferGraphics);
-	 bufferGraphics.setColor(Color.RED);
-	 bufferGraphics.fillRect(0,0,50,50);
+	// bufferGraphics.setColor(Color.RED);
+	// bufferGraphics.fillRect(0,0,50,50);
 	 
 	 //if (plateau!=null & plateau.getGagne()==false) {
-	//	 plateau.afficher(bufferGraphics);
+	 plateau.afficher(bufferGraphics);
 	 /*}
 	 else if (plateau.getGagne()==true){
 		 plateau.afficherGagner(bufferGraphics);
