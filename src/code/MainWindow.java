@@ -109,7 +109,7 @@ public class MainWindow extends JFrame {
 	 bufferGraphics.fillRect(0,0,50,50);
 	 
 	 //if (plateau!=null & plateau.getGagne()==false) {
-		 plateau.afficher(bufferGraphics);
+		 /*plateau.afficher(bufferGraphics);
 	 /*}
 	 else if (plateau.getGagne()==true){
 		 plateau.afficherGagner(bufferGraphics);
@@ -125,7 +125,7 @@ public class MainWindow extends JFrame {
 
 	    
 	
-	private void keyPressEvent(java.awt.event.KeyEvent e) {
+	/*private void keyPressEvent(java.awt.event.KeyEvent e) {
 		switch(e.getKeyCode()) {
 			case (KeyEvent.VK_RIGHT ) :
 				plateau.DeplacementDroite();
@@ -137,7 +137,7 @@ public class MainWindow extends JFrame {
 				plateau.DeplacementBas();
 		}
 		dessiner(this.getContentPane().getGraphics());
-	}
+	}*/
 	
 	
 	

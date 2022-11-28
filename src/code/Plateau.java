@@ -37,7 +37,7 @@ public class Plateau {
 		CaseMur[] listeMur = new CaseMur[NombreElements-1-2*NombreCaisses];
 	}
 	
-	public Plateau(String nomfichier) {
+	/*public Plateau(String nomfichier) {
 		int type,a,o,i=0,k=0,m=0;
 		
 		Scanner sc = new Scanner(nomfichier);
@@ -83,7 +83,7 @@ public class Plateau {
 	     /*else {
 	    	 System.out.println("Impossible d'ouvrir le fichier !");
 		}*/
-	}
+	//}
 
 	
 	
