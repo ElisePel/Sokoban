@@ -25,8 +25,8 @@ public class MainWindow extends JFrame {
 	private JButton btnJouer;
 	private JButton btnNiveaux;
 	private JButton btnAide;
-	private Plateau plateau;
-	private Personnage perso;
+	protected Plateau plateau = new Plateau();
+	private Personnage perso =  new Personnage();
 
 	/**
 	 * Launch the application.
@@ -48,7 +48,9 @@ public class MainWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public MainWindow() {
-		plateau = new Plateau("nv1.txt");
+		//String f = "../nv1.txt";
+		//java.io.File fichier = new java.io.File(f);
+		//plateau = new Plateau("../nv1.txt");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 
@@ -88,8 +90,8 @@ public class MainWindow extends JFrame {
 	
 
 	
-	public void dessiner(Graphics g)
-	{
+	public void dessiner(Graphics g){
+	 //plateau = new Plateau("../nv1.txt");
 	 Graphics bufferGraphics;
 	 Image offscreen;
 	 // On crée une image en mémoire de la taille du ContentPane
@@ -110,15 +112,9 @@ public class MainWindow extends JFrame {
 	// bufferGraphics.fillRect(0,0,50,50);
 	 
 	 //if (plateau!=null & plateau.getGagne()==false) {
-<<<<<<< HEAD
+
 	 plateau.afficher(bufferGraphics);
-=======
-<<<<<<< HEAD
-		 /*plateau.afficher(bufferGraphics);
-=======
-	//	 plateau.afficher(bufferGraphics);
->>>>>>> 7e048d6ed152dadfe69fd9739b22464defcdd31c
->>>>>>> ceaf9ebd1a1187b7b0a347368e6e0dee02f64a80
+
 	 /*}
 	 else if (plateau.getGagne()==true){
 		 plateau.afficherGagner(bufferGraphics);
@@ -148,10 +144,5 @@ public class MainWindow extends JFrame {
 <<<<<<< HEAD
 	}*/
 	
-=======
 	}
-	*/
->>>>>>> 7e048d6ed152dadfe69fd9739b22464defcdd31c
-	
-	
-}
+

@@ -3,6 +3,15 @@ package code;
 import java.util.Scanner; //lire un fichier
 import java.awt.Graphics; 
 import javax.swing.ImageIcon; //afficher une image
+import java.util.ArrayList; // import the ArrayList class
+import java.io.File;
+import java.nio.file.Paths;
+import java.io.IOException;
+
+import java.io.FileInputStream;
+import java.io.InputStream;
+
+import java.io.FileNotFoundException;
 
 /**
  * permet d'instancier un plateau
@@ -17,82 +26,91 @@ public class Plateau {
 	 * hauteur : entier contenant la hauteur de la grille
 	 * cases : HashMap qui a pour valeur case et pour clÃ© coordonnÃ©es
 	 */
-	protected int NombreCaisses;
-	protected int NombreElements;
-	protected int NombreMurs;
-    protected Personnage perso;
+	protected int NombreCaisses = 1;
+	protected int NombreElements = 2;
+	protected int NombreMurs = 1;
+    protected Personnage perso = new Personnage();
     protected boolean gagne = false;
-    protected Caisse [] listeCaisse;
-	protected CaseArrivee [] listeCaseArrivee; 	
-	protected CaseMur [] listeMur;
+    protected Caisse caisse = new Caisse();
+    protected CaseArrivee casearrivee = new CaseArrivee();
+    protected CaseMur casemur = new CaseMur();
+    protected ArrayList<Caisse> listeCaisse = new ArrayList<Caisse>();
+    protected ArrayList<CaseArrivee> listeCaseArrivee = new ArrayList<CaseArrivee>();
+    protected ArrayList<CaseMur> listeMur = new ArrayList<CaseMur>();
 	
 	
 	/**
 	 * Constructeur par dÃ©fault de la classe Plateau
 	 */
 	public Plateau() {
-		
-		Caisse[] listeCaisse = new Caisse[NombreCaisses];
-		CaseArrivee[] listeCaseArrivee = new CaseArrivee[NombreCaisses];
-		CaseMur[] listeMur = new CaseMur[NombreElements-1-2*NombreCaisses];
+
 	}
-<<<<<<< HEAD
+		
+
 	
 	public Plateau(String nomfichier) {
-		int type,a,o,i=0,k=0,m=0;
+		int type,a,o;
+		//String f = nomfichier;
+		//java.io.File fichier = new java.io.File(f);
+		//File fichier = new File(nomfichier);
+		try {
+			//System.out.println(nomfichier);
+			//InputStream fichier = new FileInputStream(nomfichier);
+			
+			//File f = File("../") + fichier;
+			System.out.println(new File(nomfichier));
+			System.out.println("test");
+			//Scanner sc = new Scanner(Paths.get("../nv1.txt"));
+			//Scanner sc = new Scanner(new File("C:\\Users\\moi\\Desktop\\5A\\java\\nv1.txt"));
+			InputStream ins = new FileInputStream("../nv1.txt");
+			Scanner sc = new Scanner(ins);
+			
+			System.out.println(new FileInputStream("C://Users//moi//Desktop//5A//java//nv1.txt"));
+			while (sc.hasNext()){
+				String n = sc.nextLine();
+				System.out.println(n);
+				NombreCaisses = Integer.parseInt(sc.nextLine());
+				System.out.println(NombreCaisses);
+	            NombreElements = sc.nextInt();
+	            NombreMurs = sc.nextInt();
+
+		            for (int j=0;j<NombreElements;j++){
+		                type = sc.nextInt();
+		                if (type==0){
+		                    a = sc.nextInt();
+		                    System.out.println(a);
+		                    o = sc.nextInt();
+		                    perso.setCoordonneesPerso(a,o);
+		                }
+		                else if (type==1){
+		                    a = sc.nextInt();
+		                    o = sc.nextInt();
+		                    caisse.setCoordonnees(a, o);
+		                    listeCaisse.add(caisse);
+		                }
+		                else if (type==2)
+		                {
+		                    a = sc.nextInt();
+		                    o = sc.nextInt();
+		                    casearrivee.setCoordonnees(a, o);
+		                    listeCaseArrivee.add(casearrivee);
+		                }
+		                else if (type==3)
+		                {
+		                    a = sc.nextInt();
+		                    o = sc.nextInt();
+		                    casemur.setCoordonnees(a, o);
+		                    listeMur.add(casemur);
+		                }
+		            }
+		         }
+				sc.close();
+		}
 		
-		Scanner sc = new Scanner(nomfichier);
-	   
-		while (sc.hasNextInt()){
-			NombreCaisses = sc.nextInt();
-            NombreElements = sc.nextInt();
-            NombreMurs = sc.nextInt();
-            listeCaisse = new Caisse[NombreCaisses];
-            listeCaseArrivee = new CaseArrivee[NombreCaisses];
-            listeMur = new CaseMur[NombreMurs];
-
-	            for (int j=0;j<NombreElements;j++){
-	                type = sc.nextInt();
-	                if (type==0){
-	                    a = sc.nextInt();
-	                    o = sc.nextInt();
-	                    perso.setCoordonneesPerso(a,o);
-	                }
-	                else if (type==1){
-	                    a = sc.nextInt();
-	                    o = sc.nextInt();
-	                    listeCaisse[i].setCoordonnees(a,o);
-	                    i++;
-	                }
-	                else if (type==2)
-	                {
-	                    a = sc.nextInt();
-	                    o = sc.nextInt();
-	                    listeCaseArrivee[k].setCoordonnees(a,o);
-	                    k++;
-	                }
-	                else if (type==3)
-	                {
-	                    a = sc.nextInt();
-	                    o = sc.nextInt();
-	                    listeMur[m].setCoordonnees(a,o);
-	                    m++;
-	                }
-	            }
-	         }
-			sc.close();
-	     /*else {
-	    	 System.out.println("Impossible d'ouvrir le fichier !");
-		}*/
+	    catch (IOException e) {
+	    	 System.out.println("Impossible d'ouvrir le fichier");
+		}
 	}
-=======
-
-	
-	
->>>>>>> ceaf9ebd1a1187b7b0a347368e6e0dee02f64a80
-
-	
-	
 	
 	
 	
@@ -104,7 +122,7 @@ public class Plateau {
 	    int i=0;
 	    while (b==true && i<NombreCaisses)
 	    {
-	        if (listeCaisse[i].getArrivee()==false)
+	        if (listeCaisse.get(i).getArrivee()==false)
 	            b=false;
 	        i++;
 	    }
@@ -125,19 +143,19 @@ public class Plateau {
 
 	    for (int i=0;i<NombreCaisses;i++)
 	    {
-	        if (listeCaisse[i].getAbcisse()==x && listeCaisse[i].getOrdonnee()==y)
+	        if (listeCaisse.get(i).getAbcisse()==x && listeCaisse.get(i).getOrdonnee()==y)
 	            return 1;
 	    }
 
 	    for (int i=0;i<NombreCaisses;i++)
 	    {
-	        if (listeCaseArrivee[i].getAbcisse()==x && listeCaseArrivee[i].getOrdonnee()==y)
+	        if (listeCaseArrivee.get(i).getAbcisse()==x && listeCaseArrivee.get(i).getOrdonnee()==y)
 	            return 2;
 	    }
 
 	    for (int i=0;i<NombreMurs;i++)
 	    {
-	        if (listeMur[i].getAbcisse()==x && listeMur[i].getOrdonnee()==y)
+	        if (listeMur.get(i).getAbcisse()==x && listeMur.get(i).getOrdonnee()==y)
 	            return 3;
 	    }
 
@@ -157,19 +175,19 @@ public class Plateau {
 
 	    for (int i=0;i<NombreCaisses;i++)
 	    {
-	        if (listeCaisse[i].getAbcisse()==x && listeCaisse[i].getOrdonnee()==y)
+	        if (listeCaisse.get(i).getAbcisse()==x && listeCaisse.get(i).getOrdonnee()==y)
 	            return 1;
 	    }
 
 	    for (int i=0;i<NombreCaisses;i++)
 	    {
-	        if (listeCaseArrivee[i].getAbcisse()==x && listeCaseArrivee[i].getOrdonnee()==y)
+	        if (listeCaseArrivee.get(i).getAbcisse()==x && listeCaseArrivee.get(i).getOrdonnee()==y)
 	            return 2;
 	    }
 
 	    for (int i=0;i<NombreMurs;i++)
 	    {
-	        if (listeMur[i].getAbcisse()==x && listeMur[i].getOrdonnee()==y)
+	        if (listeMur.get(i).getAbcisse()==x && listeMur.get(i).getOrdonnee()==y)
 	            return 3;
 	    }
 
@@ -189,19 +207,19 @@ public class Plateau {
 
 	    for (int i=0;i<NombreCaisses;i++)
 	    {
-	        if (listeCaisse[i].getAbcisse()==x && listeCaisse[i].getOrdonnee()==y)
+	        if (listeCaisse.get(i).getAbcisse()==x && listeCaisse.get(i).getOrdonnee()==y)
 	            return 1;
 	    }
 
 	    for (int i=0;i<NombreCaisses;i++)
 	    {
-	        if (listeCaseArrivee[i].getAbcisse()==x && listeCaseArrivee[i].getOrdonnee()==y)
+	        if (listeCaseArrivee.get(i).getAbcisse()==x && listeCaseArrivee.get(i).getOrdonnee()==y)
 	            return 2;
 	    }
 
 	    for (int i=0;i<NombreMurs;i++)
 	    {
-	        if (listeMur[i].getAbcisse()==x && listeMur[i].getOrdonnee()==y)
+	        if (listeMur.get(i).getAbcisse()==x && listeMur.get(i).getOrdonnee()==y)
 	            return 3;
 	    }
 
@@ -221,19 +239,19 @@ public class Plateau {
 
 	    for (int i=0;i<NombreCaisses;i++)
 	    {
-	        if (listeCaisse[i].getAbcisse()==x && listeCaisse[i].getOrdonnee()==y)
+	        if (listeCaisse.get(i).getAbcisse()==x && listeCaisse.get(i).getOrdonnee()==y)
 	            return 1;
 	    }
 
 	    for (int i=0;i<NombreCaisses;i++)
 	    {
-	        if (listeCaseArrivee[i].getAbcisse()==x && listeCaseArrivee[i].getOrdonnee()==y)
+	        if (listeCaseArrivee.get(i).getAbcisse()==x && listeCaseArrivee.get(i).getOrdonnee()==y)
 	            return 2;
 	    }
 
 	    for (int i=0;i<NombreMurs;i++)
 	    {
-	        if (listeMur[i].getAbcisse()==x && listeMur[i].getOrdonnee()==y)
+	        if (listeMur.get(i).getAbcisse()==x && listeMur.get(i).getOrdonnee()==y)
 	            return 3;
 	    }
 
@@ -250,24 +268,24 @@ public class Plateau {
 
 	public int VoisinCaisseGauche(int i)
 	{
-	    int x=listeCaisse[i].getAbcisse()-listeCaisse[i].getLargeur();
-	    int y=listeCaisse[i].getOrdonnee();
+	    int x=listeCaisse.get(i).getAbcisse()-listeCaisse.get(i).getLargeur();
+	    int y=listeCaisse.get(i).getOrdonnee();
 
 	    for (int j=0;j<NombreCaisses;j++)
 	    {
-	        if (listeCaisse[j].getAbcisse()==x && listeCaisse[j].getOrdonnee()==y)
+	        if (listeCaisse.get(j).getAbcisse()==x && listeCaisse.get(j).getOrdonnee()==y)
 	            return 1;
 	    }
 
 	    for (int j=0;j<NombreCaisses;j++)
 	    {
-	        if (listeCaseArrivee[j].getAbcisse()==x && listeCaseArrivee[j].getOrdonnee()==y)
+	        if (listeCaseArrivee.get(j).getAbcisse()==x && listeCaseArrivee.get(j).getOrdonnee()==y)
 	            return 2;
 	    }
 
 	    for (int j=0;j<NombreMurs;j++)
 	    {
-	        if (listeMur[j].getAbcisse()==x && listeMur[j].getOrdonnee()==y)
+	        if (listeMur.get(j).getAbcisse()==x && listeMur.get(j).getOrdonnee()==y)
 	            return 3;
 	    }
 
@@ -283,25 +301,25 @@ public class Plateau {
 	 */
 	public int VoisinCaisseDroite(int i)
 	{
-	    int x=listeCaisse[i].getAbcisse()+listeCaisse[i].getLargeur();
-	    int y=listeCaisse[i].getOrdonnee();
+	    int x=listeCaisse.get(i).getAbcisse()+listeCaisse.get(i).getLargeur();
+	    int y=listeCaisse.get(i).getOrdonnee();
 
 	    for (int j=0;j<NombreCaisses;j++)
 	    {
-	        if (listeCaisse[j].getAbcisse()==x && listeCaisse[j].getOrdonnee()==y)
+	        if (listeCaisse.get(j).getAbcisse()==x && listeCaisse.get(j).getOrdonnee()==y)
 	            return 1;
 	    }
 
 	    for (int j=0;j<NombreCaisses;j++)
 	    {
-	        if (listeCaseArrivee[j].getAbcisse()==x && listeCaseArrivee[j].getOrdonnee()==y)
+	        if (listeCaseArrivee.get(j).getAbcisse()==x && listeCaseArrivee.get(j).getOrdonnee()==y)
 	            return 2;
 	    }
 
 
 	    for (int j=0;j<NombreMurs;j++)
 	    {
-	        if (listeMur[j].getAbcisse()==x && listeMur[j].getOrdonnee()==y)
+	        if (listeMur.get(j).getAbcisse()==x && listeMur.get(j).getOrdonnee()==y)
 	            return 3;
 	    }
 
@@ -317,25 +335,25 @@ public class Plateau {
 	 */
 	public int VoisinCaisseHaut(int i)
 	{
-	    int x=listeCaisse[i].getAbcisse();
-	    int y=listeCaisse[i].getOrdonnee()-listeCaisse[i].getHauteur();
+	    int x=listeCaisse.get(i).getAbcisse();
+	    int y=listeCaisse.get(i).getOrdonnee()-listeCaisse.get(i).getHauteur();
 
 	    for (int j=0;j<NombreCaisses;j++)
 	    {
-	        if (listeCaisse[j].getAbcisse()==x && listeCaisse[j].getOrdonnee()==y)
+	        if (listeCaisse.get(j).getAbcisse()==x && listeCaisse.get(j).getOrdonnee()==y)
 	            return 1;
 	    }
 
 	    for (int j=0;j<NombreCaisses;j++)
 	    {
-	        if (listeCaseArrivee[j].getAbcisse()==x && listeCaseArrivee[j].getOrdonnee()==y)
+	        if (listeCaseArrivee.get(j).getAbcisse()==x && listeCaseArrivee.get(j).getOrdonnee()==y)
 	            return 2;
 	    }
 
 
 	    for (int j=0;j<NombreMurs;j++)
 	    {
-	        if (listeMur[j].getAbcisse()==x && listeMur[j].getOrdonnee()==y)
+	        if (listeMur.get(j).getAbcisse()==x && listeMur.get(j).getOrdonnee()==y)
 	            return 3;
 	    }
 
@@ -351,26 +369,26 @@ public class Plateau {
 	 */
 	public int VoisinCaisseBas(int i)
 	{
-	    int x=listeCaisse[i].getAbcisse();
-	    int y=listeCaisse[i].getOrdonnee()+listeCaisse[i].getHauteur();
+	    int x=listeCaisse.get(i).getAbcisse();
+	    int y=listeCaisse.get(i).getOrdonnee()+listeCaisse.get(i).getHauteur();
 
 
 	    for (int j=0;j<NombreCaisses;j++)
 	    {
-	        if (listeCaisse[j].getAbcisse()==x && listeCaisse[j].getOrdonnee()==y)
+	        if (listeCaisse.get(j).getAbcisse()==x && listeCaisse.get(j).getOrdonnee()==y)
 	            return 1;
 	    }
 
 	    for (int j=0;j<NombreCaisses;j++)
 	    {
-	        if (listeCaseArrivee[j].getAbcisse()==x && listeCaseArrivee[j].getOrdonnee()==y)
+	        if (listeCaseArrivee.get(j).getAbcisse()==x && listeCaseArrivee.get(j).getOrdonnee()==y)
 	            return 2;
 	    }
 
 
 	    for (int j=0;j<NombreMurs;j++)
 	    {
-	        if (listeMur[j].getAbcisse()==x && listeMur[j].getOrdonnee()==y)
+	        if (listeMur.get(j).getAbcisse()==x && listeMur.get(j).getOrdonnee()==y)
 	            return 3;
 	    }
 
@@ -394,7 +412,7 @@ public class Plateau {
 
 	                for (int i=0;i<NombreCaisses;i++)
 	                {
-	                    if (listeCaisse[i].getAbcisse()==x && listeCaisse[i].getOrdonnee()==y)
+	                    if (listeCaisse.get(i).getAbcisse()==x && listeCaisse.get(i).getOrdonnee()==y)
 	                        return i;
 	                }
 	                break;
@@ -404,7 +422,7 @@ public class Plateau {
 
 	                for (int i=0;i<NombreCaisses;i++)
 	                {
-	                    if (listeCaisse[i].getAbcisse()==x && listeCaisse[i].getOrdonnee()==y)
+	                    if (listeCaisse.get(i).getAbcisse()==x && listeCaisse.get(i).getOrdonnee()==y)
 	                        return i;
 	                }
 	                break;
@@ -413,7 +431,7 @@ public class Plateau {
 
 	                for (int i=0;i<NombreCaisses;i++)
 	                {
-	                    if (listeCaisse[i].getAbcisse()==x && listeCaisse[i].getOrdonnee()==y)
+	                    if (listeCaisse.get(i).getAbcisse()==x && listeCaisse.get(i).getOrdonnee()==y)
 	                        return i;
 	                }
 	                break;
@@ -422,7 +440,7 @@ public class Plateau {
 
 	                for (int i=0;i<NombreCaisses;i++)
 	                {
-	                    if (listeCaisse[i].getAbcisse()==x && listeCaisse[i].getOrdonnee()==y)
+	                    if (listeCaisse.get(i).getAbcisse()==x && listeCaisse.get(i).getOrdonnee()==y)
 	                        return i;
 	                }
 	                break;
@@ -449,14 +467,14 @@ public class Plateau {
 	        vc=getNumCaisse(5);
 	        if (VoisinCaisseGauche(vc)==4)
 	        {
-	            listeCaisse[vc].deplacer(-listeCaisse[vc].getLargeur(),0);
-	            listeCaisse[vc].setArrivee(false);
+	            listeCaisse.get(vc).deplacer(-listeCaisse.get(vc).getLargeur(),0);
+	            listeCaisse.get(vc).setArrivee(false);
 	            perso.deplacer(-perso.getLargeur(),0);
 	        }
 	        else if (VoisinCaisseGauche(vc)==2)
 	        {
-	            listeCaisse[vc].deplacer(-listeCaisse[vc].getLargeur(),0);
-	            listeCaisse[vc].setArrivee(true);
+	            listeCaisse.get(vc).deplacer(-listeCaisse.get(vc).getLargeur(),0);
+	            listeCaisse.get(vc).setArrivee(true);
 	            perso.deplacer(-perso.getLargeur(),0);
 	            gagne=testerSiGagner();
 	        }
@@ -481,14 +499,14 @@ public class Plateau {
 	        vc=getNumCaisse(6);
 	        if (VoisinCaisseDroite(vc)==4)
 	        {
-	            listeCaisse[vc].deplacer(listeCaisse[vc].getLargeur(),0);
-	            listeCaisse[vc].setArrivee(false);
+	            listeCaisse.get(vc).deplacer(listeCaisse.get(vc).getLargeur(),0);
+	            listeCaisse.get(vc).setArrivee(false);
 	            perso.deplacer(perso.getLargeur(),0);
 	        }
 	        else if (VoisinCaisseDroite(vc)==2)
 	        {
-	            listeCaisse[vc].deplacer(listeCaisse[vc].getLargeur(),0);
-	            listeCaisse[vc].setArrivee(true);
+	            listeCaisse.get(vc).deplacer(listeCaisse.get(vc).getLargeur(),0);
+	            listeCaisse.get(vc).setArrivee(true);
 	            perso.deplacer(perso.getLargeur(),0);
 	            gagne=testerSiGagner();
 	        }
@@ -513,14 +531,14 @@ public class Plateau {
 	        vc=getNumCaisse(7);
 	        if (VoisinCaisseHaut(vc)==4)
 	        {
-	            listeCaisse[vc].deplacer(0,-listeCaisse[vc].getHauteur());
-	            listeCaisse[vc].setArrivee(false);
+	            listeCaisse.get(vc).deplacer(0,-listeCaisse.get(vc).getHauteur());
+	            listeCaisse.get(vc).setArrivee(false);
 	            perso.deplacer(0,-perso.getHauteur());
 	        }
 	        else if (VoisinCaisseHaut(vc)==2)
 	        {
-	            listeCaisse[vc].deplacer(0,-listeCaisse[vc].getHauteur());
-	            listeCaisse[vc].setArrivee(true);
+	            listeCaisse.get(vc).deplacer(0,-listeCaisse.get(vc).getHauteur());
+	            listeCaisse.get(vc).setArrivee(true);
 	            perso.deplacer(0,-perso.getHauteur());
 	            gagne=testerSiGagner();
 	        }
@@ -545,14 +563,14 @@ public class Plateau {
 	        vc=getNumCaisse(8);
 	        if (VoisinCaisseBas(vc)==4)
 	        {
-	            listeCaisse[vc].deplacer(0,listeCaisse[vc].getHauteur());
-	            listeCaisse[vc].setArrivee(false);
+	            listeCaisse.get(vc).deplacer(0,listeCaisse.get(vc).getHauteur());
+	            listeCaisse.get(vc).setArrivee(false);
 	            perso.deplacer(0,perso.getHauteur());
 	        }
 	        else if (VoisinCaisseBas(vc)==2)
 	        {
-	            listeCaisse[vc].deplacer(0,listeCaisse[vc].getHauteur());
-	            listeCaisse[vc].setArrivee(true);
+	            listeCaisse.get(vc).deplacer(0,listeCaisse.get(vc).getHauteur());
+	            listeCaisse.get(vc).setArrivee(true);
 	            perso.deplacer(0,perso.getHauteur());
 	            gagne=testerSiGagner();
 	        }
@@ -568,16 +586,20 @@ public class Plateau {
         
 		//personnage = new ImageIcon("C:\\Users\\moi\\Desktop\\5A\\java\\prison.jpeg");
 		personnage = new ImageIcon("../prisonnier.png");
-		g.drawImage(personnage.getImage(), 200,100,50,50,null);
-
-        //g.drawImage(personnage.getImage(), perso.getAbcisse(),perso.getOrdonnee(),perso.getHauteur(),perso.getLargeur(),null);
-/*		
+		//g.drawImage(personnage.getImage(), 200,100,50,50,null);
+		System.out.println(perso.getAbcisse());
+		System.out.println(perso.getOrdonnee());
+		System.out.println(perso.getHauteur());
+		System.out.println(perso.getLargeur());
+        g.drawImage(personnage.getImage(), perso.getAbcisse(),perso.getOrdonnee(),perso.getHauteur(),perso.getLargeur(),null);
+	/*
 	    for (int i=0;i<NombreCaisses;i++){
-	       g.drawImage(caisse.getImage(), listeCaisse[i].getAbcisse(),listeCaisse[i].getOrdonnee(),listeCaisse[i].getHauteur(),listeCaisse[i].getLargeur(),null);
-	       g.drawImage(arrivee.getImage(), listeCaseArrivee[i].getAbcisse(),listeCaseArrivee[i].getOrdonnee(),listeCaseArrivee[i].getHauteur(),listeCaseArrivee[i].getLargeur(), null);
+	       g.drawImage(caisse.getImage(), listeCaisse.get(i).getAbcisse(),listeCaisse.get(i).getOrdonnee(),listeCaisse.get(i).getHauteur(),listeCaisse.get(i).getLargeur(),null);
+	       g.drawImage(arrivee.getImage(), listeCaseArrivee.get(i).getAbcisse(),listeCaseArrivee.get(i).getOrdonnee(),listeCaseArrivee.get(i).getHauteur(),listeCaseArrivee.get(i).getLargeur(), null);
 	    }
+	    
 	    for (int l=0;l<NombreMurs;l++){
-	    	g.drawImage(mur.getImage(), listeMur[l].getAbcisse(),listeMur[l].getOrdonnee(),listeMur[l].getHauteur(),listeMur[l].getLargeur(),null);
+	    	g.drawImage(mur.getImage(), listeMur.get(l).getAbcisse(),listeMur.get(l).getOrdonnee(),listeMur.get(l).getHauteur(),listeMur.get(l).getLargeur(),null);
 	    }*/
 	}
 	

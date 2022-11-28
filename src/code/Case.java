@@ -7,8 +7,8 @@ public class Case {
 	 * j : correspond Ã  l'ordonnÃ©e
 	 */
 	
-	private int abcisseCase;
-	private int ordonneeCase;
+	private int abcisseCase = 50;
+	private int ordonneeCase = 50;
 	private int hauteurCase;
 	private int largeurCase;
 
