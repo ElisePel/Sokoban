@@ -21,7 +21,7 @@ public class FenetreAide extends JDialog {
 	 * Create the dialog.
 	 */
 	public FenetreAide() {
-		setBounds(100, 100, 450, 300);
+		setBounds(250, 250, 450, 300);
 		getContentPane().setLayout(null);
 		contentPanel.setBounds(0, 0, 436, 232);
 		contentPanel.setLayout(new FlowLayout());

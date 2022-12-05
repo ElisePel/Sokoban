@@ -1,17 +1,9 @@
 package code;
 
-import java.util.Scanner; //lire un fichier
 import java.awt.Graphics; 
 import javax.swing.ImageIcon; //afficher une image
 import java.util.ArrayList; // import the ArrayList class
-import java.io.File;
-import java.nio.file.Paths;
-import java.io.IOException;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
-
-import java.io.FileNotFoundException;
 
 /**
  * permet d'instancier un plateau
@@ -29,6 +21,7 @@ public class Plateau {
 	protected int NombreCaisses = 1;
 	protected int NombreElements = 2;
 	protected int NombreMurs = 1;
+	protected int niveau;
     protected Personnage perso = new Personnage();
     protected boolean gagne = false;
     protected Caisse caisse = new Caisse();
@@ -45,101 +38,113 @@ public class Plateau {
 	public Plateau() {
 
 	}
-<<<<<<< HEAD
-=======
-		
 
->>>>>>> 6e2f0e29166bcb369e5ec829dc3611c1f56a622a
 	
 	public Plateau(int fichier) {
+		niveau = fichier;
+		int h = 50;
+		int l = 50;
 		switch (fichier) {
 			case 1 :
 				NombreCaisses = 2;
 				NombreElements = 33;
 	            NombreMurs = 28;
 	            //personnage
-	            perso.setCoordonneesPerso(200,300);
-	            //caisse
-	            caisse.setCoordonnees(250, 150);
-	            listeCaisse.add(caisse);
-	            caisse.setCoordonnees(350, 250);
-	            listeCaisse.add(caisse);
-	            //casearrivee
-	            casearrivee.setCoordonnees(400, 150);
-	            listeCaseArrivee.add(casearrivee);
-	            casearrivee.setCoordonnees(350, 200);
-	            listeCaseArrivee.add(casearrivee);
-	            //casemur
-	            casemur.setCoordonnees(200, 50);
-	            listeMur.add(casemur);
-	            casemur.setCoordonnees(250, 50);
-	            listeMur.add(casemur);
-	            casemur.setCoordonnees(300, 50);
-	            listeMur.add(casemur);
-	            casemur.setCoordonnees(350, 50);
-	            listeMur.add(casemur);
-	            casemur.setCoordonnees(400, 50);
-	            listeMur.add(casemur);
-	            casemur.setCoordonnees(150, 100);
-	            listeMur.add(casemur);
-	            casemur.setCoordonnees(200, 100);
-	            listeMur.add(casemur);
-	            casemur.setCoordonnees(400, 100);
-	            listeMur.add(casemur);
-	            casemur.setCoordonnees(450, 100);
-	            listeMur.add(casemur);
-	            casemur.setCoordonnees(150, 150);
-	            listeMur.add(casemur);
-	            casemur.setCoordonnees(450, 150);
-	            listeMur.add(casemur);
-	            casemur.setCoordonnees(150, 200);
-	            listeMur.add(casemur);
-	            casemur.setCoordonnees(300, 200);
-	            listeMur.add(casemur);
-	            casemur.setCoordonnees(450, 200);
-	            listeMur.add(casemur);
-	            casemur.setCoordonnees(150, 250);
-	            listeMur.add(casemur);
-	            casemur.setCoordonnees(450, 250);
-	            listeMur.add(casemur);
-	            casemur.setCoordonnees(150, 300);
-	            listeMur.add(casemur);
-	            casemur.setCoordonnees(450, 300);
-	            listeMur.add(casemur);
-	            casemur.setCoordonnees(150, 350);
-	            listeMur.add(casemur);
-	            casemur.setCoordonnees(200, 350);
-	            listeMur.add(casemur);
-	            casemur.setCoordonnees(250, 350);
-	            listeMur.add(casemur);
-	            casemur.setCoordonnees(300, 350);
-	            listeMur.add(casemur);
-	            casemur.setCoordonnees(350, 350);
-	            listeMur.add(casemur);
-	            casemur.setCoordonnees(450, 350);
-	            listeMur.add(casemur);
-	            casemur.setCoordonnees(350, 400);
-	            listeMur.add(casemur);
-	            casemur.setCoordonnees(400, 400);
-	            listeMur.add(casemur);
-	            casemur.setCoordonnees(450, 400);
-	            listeMur.add(casemur);
-	        break;
+	            perso = new Personnage(200,300,h,l);
 	            
-			default:
-				
+	           //caisse
+	            listeCaisse.add(new Caisse(250,150,h,l));
+	            listeCaisse.add(new Caisse(350,250,h,l));
+	            
+	            //casearrivee
+	            listeCaseArrivee.add(new CaseArrivee(400, 150,h,l, false));
+	            listeCaseArrivee.add(new CaseArrivee(350, 200,h,l, false));
+	            
+	            //casemur
+	            listeMur.add(new CaseMur(200, 50,h,l));
+	            listeMur.add(new CaseMur(250, 50,h,l));
+	            listeMur.add(new CaseMur(300, 50,h,l));
+	            listeMur.add(new CaseMur(350, 50,h,l));
+	            listeMur.add(new CaseMur(400, 50,h,l));
+	            listeMur.add(new CaseMur(150, 100,h,l));
+	            listeMur.add(new CaseMur(200, 100,h,l));
+	            listeMur.add(new CaseMur(400, 100,h,l));
+	            listeMur.add(new CaseMur(450, 100,h,l));
+	            listeMur.add(new CaseMur(150, 150,h,l));
+	            listeMur.add(new CaseMur(450, 150,h,l));
+	            listeMur.add(new CaseMur(150, 200,h,l));
+	            listeMur.add(new CaseMur(300, 200,h,l));
+	            listeMur.add(new CaseMur(450, 200,h,l));
+	            listeMur.add(new CaseMur(150, 250,h,l));
+	            listeMur.add(new CaseMur(300, 250,h,l));
+	            listeMur.add(new CaseMur(450, 250,h,l));
+	            listeMur.add(new CaseMur(150, 300,h,l));
+	            listeMur.add(new CaseMur(450, 300,h,l));
+	            listeMur.add(new CaseMur(150, 350,h,l));
+	            listeMur.add(new CaseMur(200, 350,h,l));
+	            listeMur.add(new CaseMur(250, 350,h,l));
+	            listeMur.add(new CaseMur(300, 350,h,l));
+	            listeMur.add(new CaseMur(350, 350,h,l));
+	            listeMur.add(new CaseMur(450, 350,h,l));
+	            listeMur.add(new CaseMur(350, 400,h,l));
+	            listeMur.add(new CaseMur(400, 400,h,l));
+	            listeMur.add(new CaseMur(450, 400,h,l));
+	        break;
 
+			case 2 :
+				NombreCaisses = 4;
+				NombreElements = 37;
+	            NombreMurs = 28;
+	            //personnage
+	            perso = new Personnage(300,250,h,l);
+	            
+	           //caisse
+	            listeCaisse.add(new Caisse(250,200,h,l));
+	            listeCaisse.add(new Caisse(250,250,h,l));
+	            listeCaisse.add(new Caisse(350,200,h,l));
+	            listeCaisse.add(new Caisse(300,300,h,l));
+	            
+	            //casearrivee
+	            listeCaseArrivee.add(new CaseArrivee(250, 100,h,l, false));
+	            listeCaseArrivee.add(new CaseArrivee(400, 200,h,l, false));
+	            listeCaseArrivee.add(new CaseArrivee(150, 250,h,l, false));
+	            listeCaseArrivee.add(new CaseArrivee(300, 350,h,l, false));
+	            
+	            //casemur
+	            listeMur.add(new CaseMur(200, 50,h,l));
+	            listeMur.add(new CaseMur(250, 50,h,l));
+	            listeMur.add(new CaseMur(300, 50,h,l));
+	            listeMur.add(new CaseMur(200, 100,h,l));
+	            listeMur.add(new CaseMur(300, 100,h,l));
+	            listeMur.add(new CaseMur(200, 150,h,l));
+	            listeMur.add(new CaseMur(300, 150,h,l));
+	            listeMur.add(new CaseMur(350, 150,h,l));
+	            listeMur.add(new CaseMur(400, 150,h,l));
+	            listeMur.add(new CaseMur(450, 150,h,l));
+	            listeMur.add(new CaseMur(100, 200,h,l));
+	            listeMur.add(new CaseMur(150, 200,h,l));
+	            listeMur.add(new CaseMur(200, 200,h,l));
+	            listeMur.add(new CaseMur(450, 200,h,l));
+	            listeMur.add(new CaseMur(100, 250,h,l));
+	            listeMur.add(new CaseMur(350, 250,h,l));
+	            listeMur.add(new CaseMur(400, 250,h,l));
+	            listeMur.add(new CaseMur(450, 250,h,l));
+	            listeMur.add(new CaseMur(100, 300,h,l));
+	            listeMur.add(new CaseMur(150, 300,h,l));
+	            listeMur.add(new CaseMur(200, 300,h,l));
+	            listeMur.add(new CaseMur(250, 300,h,l));
+	            listeMur.add(new CaseMur(350, 300,h,l));
+	            listeMur.add(new CaseMur(250, 350,h,l));
+	            listeMur.add(new CaseMur(350, 350,h,l));
+	            listeMur.add(new CaseMur(250, 400,h,l));
+	            listeMur.add(new CaseMur(300, 400,h,l));
+	            listeMur.add(new CaseMur(350, 400,h,l));
+	        break;
 		            
 		}
 		
 	}
-<<<<<<< HEAD
 
-
-	
-	
-=======
->>>>>>> 6e2f0e29166bcb369e5ec829dc3611c1f56a622a
 	
 	
 	
@@ -611,35 +616,36 @@ public class Plateau {
 		ImageIcon personnage = new ImageIcon("../policier.png");
 		ImageIcon caisse = new ImageIcon("../prisonnier.png");
 		ImageIcon mur = new ImageIcon("../mur.jpeg");
-		ImageIcon arrivee = new ImageIcon("../prison.jpeg");
+		ImageIcon arrivee = new ImageIcon("../cellule.png");
         
-		personnage = new ImageIcon("../policier.png");
-        g.drawImage(personnage.getImage(), perso.getAbcisse(),perso.getOrdonnee(),perso.getHauteur(),perso.getLargeur(),null);
+		g.drawImage(personnage.getImage(), perso.getAbcisse(),perso.getOrdonnee(),perso.getHauteur(),perso.getLargeur(),null);
         
-        caisse = new ImageIcon("../prisonnier.png");
-	
-	    for (int i=0;i<NombreCaisses;i++){
-	    	System.out.println(listeCaisse.get(i).getAbcisse());
-			System.out.println(listeCaisse.get(i).getOrdonnee());
+		for (int i=0;i<NombreCaisses;i++){
 			g.drawImage(caisse.getImage(), listeCaisse.get(i).getAbcisse(),listeCaisse.get(i).getOrdonnee(),listeCaisse.get(i).getHauteur(),listeCaisse.get(i).getLargeur(),null);
 			g.drawImage(arrivee.getImage(), listeCaseArrivee.get(i).getAbcisse(),listeCaseArrivee.get(i).getOrdonnee(),listeCaseArrivee.get(i).getHauteur(),listeCaseArrivee.get(i).getLargeur(), null);
 	    }
 	    
-	    mur = new ImageIcon("../mur.jpeg");
-	    for (int l=0;l<NombreMurs;l++){
+		for (int l=0;l<NombreMurs;l++){
 	    	g.drawImage(mur.getImage(), listeMur.get(l).getAbcisse(),listeMur.get(l).getOrdonnee(),listeMur.get(l).getHauteur(),listeMur.get(l).getLargeur(),null);
 	    }
 	}
 	
 	
 	public void afficherGagner(Graphics g){
-		ImageIcon fin = new ImageIcon(":/fin.png");
-	    g.drawImage(fin.getImage(), 225,125,200,200,null);
+		ImageIcon fin = new ImageIcon("../bravo.png");
+	    g.drawImage(fin.getImage(), 225,125,300,300,null);
 	}
+	
 	
 	public boolean getGagne(){
 	    return gagne;
 	}
+	
+	
+	public int getniveau() {
+		return niveau;
+	}
+	
 	
 	
 

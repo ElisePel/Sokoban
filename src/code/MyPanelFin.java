@@ -4,15 +4,14 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 @SuppressWarnings("serial")
 
-class MyPanel extends JPanel {
+class MyPanelFin extends JPanel {
  // Réference sur la fenêtre principale
- private MainWindow mainWindow;
  
-
- public MyPanel(MainWindow mWindow) {
-	 mainWindow = mWindow;
+ private FenetreFin fin;
+ 
+ public MyPanelFin(FenetreFin f) {
+	 fin = f;
  }
- 
 
  /**
  * Gestionnaire d'evenement associe a l'evenement "paint" du panel.
@@ -21,6 +20,6 @@ class MyPanel extends JPanel {
  public void paintComponent(Graphics g) {
  super.paintComponent(g);
  // On appel la méthode dessiner de la fenêtre principale...
- mainWindow.dessiner(g);
+ fin.dessiner(g);
  }
 }

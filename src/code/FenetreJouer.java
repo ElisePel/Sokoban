@@ -9,14 +9,11 @@ import javax.swing.JFrame;
 //import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.ActionEvent;
 import java.awt.Graphics;
 import java.awt.Image;
 
-import java.awt.Color;
-//import java.awt.Point;
-import javax.swing.ImageIcon;
-import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
 public class FenetreJouer extends JFrame {
@@ -24,7 +21,6 @@ public class FenetreJouer extends JFrame {
 
 	private MyPanelJouer myPanel;
 	private Plateau plateau;
-	private Personnage perso;
 
 	/**
 	 * Launch the application.
@@ -33,7 +29,7 @@ public class FenetreJouer extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FenetreJouer frame = new FenetreJouer();
+					FenetreJouer frame = new FenetreJouer(0);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,62 +41,101 @@ public class FenetreJouer extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FenetreJouer() {
-		plateau = new Plateau("../nv1.txt");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-
-		// On modifie le ContentPane
+	public FenetreJouer(int niv) {
 		myPanel = new MyPanelJouer(this) ;
 		myPanel.setLayout(null);
+		addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				myKeyPressEvent(e);
+			}
+		});
+		
+		plateau = new Plateau(niv);
+				
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 750, 550);
+
+		// On modifie le ContentPane
+		
 		myPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		myPanel.setVisible(true);
 
-		//...
 		setTitle("Sokoban");
 		
 		this.setContentPane(myPanel);
 	}
 	
-	public void dessiner(Graphics g)
-	{
+	public void dessiner(Graphics g){
 	 Graphics bufferGraphics;
 	 Image offscreen;
 	 // On crée une image en mémoire de la taille du ContentPane
 	 offscreen = createImage(this.getContentPane().getWidth(),this.getContentPane().getHeight());
 	 // On récupère l'objet de type Graphics permettant de dessiner dans cette image
 	 bufferGraphics = offscreen.getGraphics();
-	 // On colore le fond de l'image en blanc
-	// bufferGraphics.setColor(Color.GRAY);
-	 //bufferGraphics.fillRect(0,0,this.getContentPane().getWidth(),this.getContentPane().getHeight());
 
-	 // On dessine les objets graphiques de la liste dans l'image en mémoire pour éviter les
-	 // problèmes de scintillements
-	 
-	 //if (listeObjets != null)
-	 //for (CObjetGraphique o : listeObjets)
-	 //o.dessiner(bufferGraphics);
-	// bufferGraphics.setColor(Color.RED);
-	// bufferGraphics.fillRect(0,0,50,50);
-	 
-	 //if (plateau!=null & plateau.getGagne()==false) {
+	 if (plateau.getGagne()==false) {
+		 plateau.afficher(bufferGraphics);
+		 JButton btnReco = new JButton("Recommencer");
+			btnReco.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					plateau = new Plateau(plateau.getniveau());
+					btnReco.setVisible(true);
+				}
+			});
+			btnReco.setBounds(30, 430, 150, 21);
+			btnReco.setFocusable(false);
+			myPanel.add(btnReco);
+			this.setContentPane(myPanel);
+	 }
 
-
-	 
-	 plateau.afficher(bufferGraphics);
-
-		 /*plateau.afficher(bufferGraphics);
-	//	 plateau.afficher(bufferGraphics);
-	 /*}
-	 else if (plateau.getGagne()==true){
+	 else if (plateau.getGagne()==true & plateau.getniveau() == 1){
 		 plateau.afficherGagner(bufferGraphics);
-	}*/
-	 
-	// plateau.afficher(bufferGraphics);
+		 JButton btnsuivant = new JButton("Niveau suivant");
+		 btnsuivant.addActionListener(new ActionListener() {
+			 public void actionPerformed(ActionEvent e) {
+				 // Création de la boite en mémoire
+				 FenetreJouer niveau2 = new FenetreJouer(2);
+				 // Affichage de la boite
+				 niveau2.setVisible(true);
+			 }
+			});
+		
+		btnsuivant.setBounds(510, 430, 200, 21);
+		btnsuivant.setFocusable(false);
+		myPanel.add(btnsuivant);
+		this.setContentPane(myPanel);
+	}
+	 else if(plateau.getGagne()==true && plateau.getniveau() == 2){
+		 FenetreFin fin = new FenetreFin();
+		 // Affichage de la boite
+		 fin.setVisible(true);
+	 }
 	 
 	 // On afficher l'image mémoire à l'écran
 	 g.drawImage(offscreen,0,0,null);
 	 
 	}
+	
+	
+	private void myKeyPressEvent(KeyEvent e) {
+	switch(e.getKeyCode()) {
+		case (KeyEvent.VK_RIGHT ) :
+			plateau.DeplacementDroite();
+		break;
+		case (KeyEvent.VK_LEFT):
+			plateau.DeplacementGauche();
+		break;
+		case (KeyEvent.VK_UP ) :
+			plateau.DeplacementHaut();
+		break;
+		case (KeyEvent.VK_DOWN):
+			plateau.DeplacementBas();
+		break;
+	}
+	dessiner(this.getContentPane().getGraphics());
+
+	}
+	
 
 }

@@ -13,25 +13,13 @@ import java.awt.event.ActionEvent;
 import java.awt.Graphics;
 import java.awt.Image;
 
-import java.awt.Color;
-//import java.awt.Point;
 import javax.swing.ImageIcon;
-import java.awt.event.KeyListener;
-import java.awt.event.KeyEvent;
+
 
 
 public class MainWindow extends JFrame {
 
-<<<<<<< HEAD
-	private MyPanel myPanel = new MyPanel();
-=======
 	private MyPanel MyPanel;
->>>>>>> 71a9eb4a70ca158b77e883388709fc0aa509a843
-	private JButton btnJouer;
-	private JButton btnNiveaux;
-	private JButton btnAide;
-	protected Plateau plateau = new Plateau();
-	private Personnage perso =  new Personnage();
 
 	/**
 	 * Launch the application.
@@ -53,11 +41,8 @@ public class MainWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public MainWindow() {
-		//String f = "../nv1.txt";
-		//java.io.File fichier = new java.io.File(f);
-		plateau = new Plateau(1);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 750, 550);
 
 		// On modifie le ContentPane
 		MyPanel = new MyPanel(this) ;
@@ -72,20 +57,17 @@ public class MainWindow extends JFrame {
 		btnJouer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					 // Création de la boite en mémoire
-					 FenetreJouer JouerFenetre = new FenetreJouer();
+				FenetreJouer JouerFenetre = new FenetreJouer(1);
 	
 					 // Affichage de la boite
-					 JouerFenetre.setVisible(true);
+				JouerFenetre.setVisible(true);
 			}
 		});
 		
-		btnJouer.setBounds(30, 240, 70, 21);
+		btnJouer.setBounds(30, 430, 70, 21);
 		MyPanel.add(btnJouer);
 		
-		/*JButton btnNiveaux = new JButton("Niveaux");
-		btnNiveaux.setBounds(120, 200, 80, 21);
-		myPanel.add(btnNiveaux);*/
-		
+	
 		JButton btnAide = new JButton("Aide");
 		btnAide.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -97,7 +79,7 @@ public class MainWindow extends JFrame {
 			}
 		});
 
-		btnAide.setBounds(350, 240, 70, 21);
+		btnAide.setBounds(610, 430, 70, 21);
 		MyPanel.add(btnAide);
 		this.setContentPane(MyPanel);
 
@@ -106,7 +88,6 @@ public class MainWindow extends JFrame {
 
 	
 	public void dessiner(Graphics g){
-	 //plateau = new Plateau("../nv1.txt");
 	 Graphics bufferGraphics;
 	 Image offscreen;
 	 ImageIcon debut = new ImageIcon("../SOKO-BAGNE.jpg");
@@ -114,70 +95,12 @@ public class MainWindow extends JFrame {
 	 offscreen = createImage(this.getContentPane().getWidth(),this.getContentPane().getHeight());
 	 // On récupère l'objet de type Graphics permettant de dessiner dans cette image
 	 bufferGraphics = offscreen.getGraphics();
-	 // On colore le fond de l'image en blanc
-	// bufferGraphics.setColor(Color.GRAY);
-	 //bufferGraphics.fillRect(0,0,this.getContentPane().getWidth(),this.getContentPane().getHeight());
+	 
+	 bufferGraphics.drawImage(debut.getImage(), 0,0,750,550,null);
 
-	 // On dessine les objets graphiques de la liste dans l'image en mémoire pour éviter les
-	 // problèmes de scintillements
-	 
-	 //if (listeObjets != null)
-	 //for (CObjetGraphique o : listeObjets)
-	 //o.dessiner(bufferGraphics);
-	// bufferGraphics.setColor(Color.RED);
-	// bufferGraphics.fillRect(0,0,50,50);
-	 
-	 //if (plateau!=null & plateau.getGagne()==false) {
-
-<<<<<<< HEAD
-	 bufferGraphics.drawImage(debut.getImage(), 0,0,450,300,null);
-	 
-	// plateau.afficher(bufferGraphics);
-
-		 /*plateau.afficher(bufferGraphics);
-	//	 plateau.afficher(bufferGraphics);
-=======
-	 plateau.afficher(bufferGraphics);
-
->>>>>>> 6e2f0e29166bcb369e5ec829dc3611c1f56a622a
-	 /*}
-	 else if (plateau.getGagne()==true){
-		 plateau.afficherGagner(bufferGraphics);
-	}*/
-	 
-	// plateau.afficher(bufferGraphics);
-	 
 	 // On afficher l'image mémoire à l'écran
 	 g.drawImage(offscreen,0,0,null);
 	 
-	}
-	
-	
-	
-
-	/*    
-	
-	/*private void keyPressEvent(java.awt.event.KeyEvent e) {
-		switch(e.getKeyCode()) {
-			case (KeyEvent.VK_RIGHT ) :
-				plateau.DeplacementDroite();
-			case (KeyEvent.VK_LEFT):
-				plateau.DeplacementGauche();
-			case (KeyEvent.VK_UP ) :
-				plateau.DeplacementHaut();
-			case (KeyEvent.VK_DOWN):
-				plateau.DeplacementBas();
-		}
-		dessiner(this.getContentPane().getGraphics());
-
-	}*/
-	
-<<<<<<< HEAD
-
-	
+	}	
 	
 }
-=======
-	}
-
->>>>>>> 6e2f0e29166bcb369e5ec829dc3611c1f56a622a
