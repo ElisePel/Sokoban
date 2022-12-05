@@ -15,6 +15,10 @@ public class CaseMur extends Case{
 	 */
 	
 	private Case c;
+	
+	public CaseMur()
+	{
+	}
 
 	/**
 	 * Constructeur de la classe Personnage

@@ -10,10 +10,14 @@ public class Personnage {
 	 * i : correspond Ã  l'abscisse
 	 * j : correspond Ã  l'ordonnÃ©e
 	 */
-	private int abcissePersonnage;
-    private int ordonneePersonnage;
+	private int abcissePersonnage = 200;
+    private int ordonneePersonnage = 200;
     private int hauteurPersonnage;
     private int largeurPersonnage;
+    
+    public Personnage() {
+    	
+    }
 
 	/**
 	 * Constructeur de la classe Personnage

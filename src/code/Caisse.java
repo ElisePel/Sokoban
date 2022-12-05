@@ -14,11 +14,15 @@ public class Caisse {
 	 * j : correspond Ã  l'ordonnÃ©e
 	 */
 	
-	private int abcisseCaisse;
-	private int ordonneeCaisse;
+	private int abcisseCaisse = 300;
+	private int ordonneeCaisse = 300;
 	private int hauteurCaisse;
 	private int largeurCaisse;
 	private boolean arrivee;
+	
+	public Caisse() {
+		
+	}
 
 	/**
 	 * Constructeur de la classe Personnage

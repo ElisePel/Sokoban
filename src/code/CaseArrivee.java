@@ -15,6 +15,11 @@ public class CaseArrivee extends Case{
 	 */
 	private Case c;
 	private boolean arrivee;
+	
+	public CaseArrivee()
+	{
+
+	}
 
 	/**
 	 * Constructeur de la classe Personnage
