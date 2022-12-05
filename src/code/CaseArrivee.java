@@ -7,13 +7,11 @@ package code;
  */
 
 
-public class CaseArrivee extends Case{
-	/**
-	 * attributs
-	 * i : correspond Ã  l'abscisse
-	 * j : correspond Ã  l'ordonnÃ©e
-	 */
-	private Case c;
+public class CaseArrivee{
+	private int abscisseCaseA = 300;
+	private int ordonneeCaseA = 300;
+	private int hauteurCaseA;
+	private int largeurCaseA;
 	private boolean arrivee;
 	
 	public CaseArrivee()
@@ -30,7 +28,10 @@ public class CaseArrivee extends Case{
 	 */
 	public CaseArrivee(int aC, int oC,int h, int l, boolean b)
 	{
-		super(aC, oC, h, l);
+		abscisseCaseA=aC;
+	    ordonneeCaseA=oC;
+	    hauteurCaseA=h;
+	    largeurCaseA=l;
 		arrivee = b;
 	}
 
@@ -40,7 +41,7 @@ public class CaseArrivee extends Case{
 	 * @return l'abscisse 
 	 */
 	public int getAbcisse() {
-		return c.getabcisseCase();
+		return abscisseCaseA;
 	}
 
 
@@ -48,21 +49,21 @@ public class CaseArrivee extends Case{
 	 * @return l'ordonne 
 	 */
 	public int getOrdonnee() {
-		return c.getordonneeCase();
+		return ordonneeCaseA;
 	}
 
 	/**
 	 * @return la hauteur 
 	 */
 	public int getHauteur() {
-		return c.gethauteurCase();
+		return hauteurCaseA;
 	}
 
 	/**
 	 * @return la largeur 
 	 */
 	public int getLargeur() {
-		return c.getlargeurCase();
+		return largeurCaseA;
 	}
 
 	
@@ -72,7 +73,7 @@ public class CaseArrivee extends Case{
 	 * y : correspond Ã  l'ordonnee
 	 */
 	public void setCoordonnees(int x, int y) {
-    	c.setabcisseCase(x);
-    	c.setordonneeCase(y);
+		abscisseCaseA=x;
+    	ordonneeCaseA=y;
 	}
 }

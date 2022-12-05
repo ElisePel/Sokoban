@@ -7,6 +7,10 @@ import javax.swing.JPanel;
 class MyPanel extends JPanel {
  // Réference sur la fenêtre principale
  private MainWindow mainWindow;
+ 
+ public MyPanel() {
+	 
+ }
 
  public MyPanel(MainWindow mWindow) {
 	 mainWindow = mWindow;

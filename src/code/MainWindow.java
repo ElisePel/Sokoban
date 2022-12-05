@@ -21,7 +21,7 @@ import java.awt.event.KeyEvent;
 
 public class MainWindow extends JFrame {
 
-	private MyPanel myPanel;
+	private MyPanel myPanel = new MyPanel();
 	private JButton btnJouer;
 	private JButton btnNiveaux;
 	private JButton btnAide;
@@ -50,7 +50,7 @@ public class MainWindow extends JFrame {
 	public MainWindow() {
 		//String f = "../nv1.txt";
 		//java.io.File fichier = new java.io.File(f);
-		//plateau = new Plateau("../nv1.txt");
+		plateau = new Plateau(1);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 

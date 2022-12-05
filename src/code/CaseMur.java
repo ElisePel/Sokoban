@@ -7,14 +7,11 @@ package code;
  */
 
 
-public class CaseMur extends Case{
-	/**
-	 * attributs
-	 * i : correspond Ã  l'abscisse
-	 * j : correspond Ã  l'ordonnÃ©e
-	 */
-	
-	private Case c;
+public class CaseMur{
+	private int abscisseCaseM = 300;
+	private int ordonneeCaseM = 300;
+	private int hauteurCaseM;
+	private int largeurCaseM;
 	
 	public CaseMur()
 	{
@@ -29,13 +26,16 @@ public class CaseMur extends Case{
 	 */
 	public CaseMur(int aC, int oC,int h, int l)
 	{
-		super(aC, oC, h, l);
+		abscisseCaseM=aC;
+	    ordonneeCaseM=oC;
+	    hauteurCaseM=h;
+	    largeurCaseM=l;
 	}
 	/**
 	 * @return l'abscisse 
 	 */
 	public int getAbcisse() {
-		return c.getabcisseCase();
+		return abscisseCaseM;
 	}
 
 
@@ -43,21 +43,21 @@ public class CaseMur extends Case{
 	 * @return l'ordonne 
 	 */
 	public int getOrdonnee() {
-		return c.getordonneeCase();
+		return ordonneeCaseM;
 	}
 
 	/**
 	 * @return la hauteur 
 	 */
 	public int getHauteur() {
-		return c.gethauteurCase();
+		return hauteurCaseM;
 	}
 
 	/**
 	 * @return la largeur 
 	 */
 	public int getLargeur() {
-		return c.getlargeurCase();
+		return largeurCaseM;
 	}
 
 	
@@ -67,7 +67,7 @@ public class CaseMur extends Case{
 	 * y : correspond Ã  l'ordonnee
 	 */
 	public void setCoordonnees(int x, int y) {
-    	c.setabcisseCase(x);
-    	c.setordonneeCase(y);
+    	abscisseCaseM =x;
+    	ordonneeCaseM=y;
 	}
 }

@@ -48,68 +48,87 @@ public class Plateau {
 		
 
 	
-	public Plateau(String nomfichier) {
-		int type,a,o;
-		//String f = nomfichier;
-		//java.io.File fichier = new java.io.File(f);
-		//File fichier = new File(nomfichier);
-		try {
-			//System.out.println(nomfichier);
-			//InputStream fichier = new FileInputStream(nomfichier);
-			
-			//File f = File("../") + fichier;
-			System.out.println(new File(nomfichier));
-			System.out.println("test");
-			//Scanner sc = new Scanner(Paths.get("../nv1.txt"));
-			//Scanner sc = new Scanner(new File("C:\\Users\\moi\\Desktop\\5A\\java\\nv1.txt"));
-			InputStream ins = new FileInputStream("../nv1.txt");
-			Scanner sc = new Scanner(ins);
-			
-			System.out.println(new FileInputStream("C://Users//moi//Desktop//5A//java//nv1.txt"));
-			while (sc.hasNext()){
-				String n = sc.nextLine();
-				System.out.println(n);
-				NombreCaisses = Integer.parseInt(sc.nextLine());
-				System.out.println(NombreCaisses);
-	            NombreElements = sc.nextInt();
-	            NombreMurs = sc.nextInt();
+	public Plateau(int fichier) {
+		switch (fichier) {
+			case 1 :
+				NombreCaisses = 2;
+				NombreElements = 33;
+	            NombreMurs = 28;
+	            //personnage
+	            perso.setCoordonneesPerso(200,300);
+	            //caisse
+	            caisse.setCoordonnees(250, 150);
+	            listeCaisse.add(caisse);
+	            caisse.setCoordonnees(350, 250);
+	            listeCaisse.add(caisse);
+	            //casearrivee
+	            casearrivee.setCoordonnees(400, 150);
+	            listeCaseArrivee.add(casearrivee);
+	            casearrivee.setCoordonnees(350, 200);
+	            listeCaseArrivee.add(casearrivee);
+	            //casemur
+	            casemur.setCoordonnees(200, 50);
+	            listeMur.add(casemur);
+	            casemur.setCoordonnees(250, 50);
+	            listeMur.add(casemur);
+	            casemur.setCoordonnees(300, 50);
+	            listeMur.add(casemur);
+	            casemur.setCoordonnees(350, 50);
+	            listeMur.add(casemur);
+	            casemur.setCoordonnees(400, 50);
+	            listeMur.add(casemur);
+	            casemur.setCoordonnees(150, 100);
+	            listeMur.add(casemur);
+	            casemur.setCoordonnees(200, 100);
+	            listeMur.add(casemur);
+	            casemur.setCoordonnees(400, 100);
+	            listeMur.add(casemur);
+	            casemur.setCoordonnees(450, 100);
+	            listeMur.add(casemur);
+	            casemur.setCoordonnees(150, 150);
+	            listeMur.add(casemur);
+	            casemur.setCoordonnees(450, 150);
+	            listeMur.add(casemur);
+	            casemur.setCoordonnees(150, 200);
+	            listeMur.add(casemur);
+	            casemur.setCoordonnees(300, 200);
+	            listeMur.add(casemur);
+	            casemur.setCoordonnees(450, 200);
+	            listeMur.add(casemur);
+	            casemur.setCoordonnees(150, 250);
+	            listeMur.add(casemur);
+	            casemur.setCoordonnees(450, 250);
+	            listeMur.add(casemur);
+	            casemur.setCoordonnees(150, 300);
+	            listeMur.add(casemur);
+	            casemur.setCoordonnees(450, 300);
+	            listeMur.add(casemur);
+	            casemur.setCoordonnees(150, 350);
+	            listeMur.add(casemur);
+	            casemur.setCoordonnees(200, 350);
+	            listeMur.add(casemur);
+	            casemur.setCoordonnees(250, 350);
+	            listeMur.add(casemur);
+	            casemur.setCoordonnees(300, 350);
+	            listeMur.add(casemur);
+	            casemur.setCoordonnees(350, 350);
+	            listeMur.add(casemur);
+	            casemur.setCoordonnees(450, 350);
+	            listeMur.add(casemur);
+	            casemur.setCoordonnees(350, 400);
+	            listeMur.add(casemur);
+	            casemur.setCoordonnees(400, 400);
+	            listeMur.add(casemur);
+	            casemur.setCoordonnees(450, 400);
+	            listeMur.add(casemur);
+	        break;
+	            
+			default:
+				
 
-		            for (int j=0;j<NombreElements;j++){
-		                type = sc.nextInt();
-		                if (type==0){
-		                    a = sc.nextInt();
-		                    System.out.println(a);
-		                    o = sc.nextInt();
-		                    perso.setCoordonneesPerso(a,o);
-		                }
-		                else if (type==1){
-		                    a = sc.nextInt();
-		                    o = sc.nextInt();
-		                    caisse.setCoordonnees(a, o);
-		                    listeCaisse.add(caisse);
-		                }
-		                else if (type==2)
-		                {
-		                    a = sc.nextInt();
-		                    o = sc.nextInt();
-		                    casearrivee.setCoordonnees(a, o);
-		                    listeCaseArrivee.add(casearrivee);
-		                }
-		                else if (type==3)
-		                {
-		                    a = sc.nextInt();
-		                    o = sc.nextInt();
-		                    casemur.setCoordonnees(a, o);
-		                    listeMur.add(casemur);
-		                }
-		            }
-		         }
-				sc.close();
+		            
 		}
 		
-	    catch (IOException e) {
-	    	 System.out.println("Impossible d'ouvrir le fichier");
-		}
 	}
 	
 	
@@ -584,23 +603,22 @@ public class Plateau {
 		ImageIcon mur = new ImageIcon("../mur.jpeg");
 		ImageIcon arrivee = new ImageIcon("../prison.jpeg");
         
-		//personnage = new ImageIcon("C:\\Users\\moi\\Desktop\\5A\\java\\prison.jpeg");
-		personnage = new ImageIcon("../prisonnier.png");
-		//g.drawImage(personnage.getImage(), 200,100,50,50,null);
-		System.out.println(perso.getAbcisse());
-		System.out.println(perso.getOrdonnee());
-		System.out.println(perso.getHauteur());
-		System.out.println(perso.getLargeur());
+		personnage = new ImageIcon("../policier.png");
         g.drawImage(personnage.getImage(), perso.getAbcisse(),perso.getOrdonnee(),perso.getHauteur(),perso.getLargeur(),null);
-	/*
+        
+        caisse = new ImageIcon("../prisonnier.png");
+	
 	    for (int i=0;i<NombreCaisses;i++){
-	       g.drawImage(caisse.getImage(), listeCaisse.get(i).getAbcisse(),listeCaisse.get(i).getOrdonnee(),listeCaisse.get(i).getHauteur(),listeCaisse.get(i).getLargeur(),null);
-	       g.drawImage(arrivee.getImage(), listeCaseArrivee.get(i).getAbcisse(),listeCaseArrivee.get(i).getOrdonnee(),listeCaseArrivee.get(i).getHauteur(),listeCaseArrivee.get(i).getLargeur(), null);
+	    	System.out.println(listeCaisse.get(i).getAbcisse());
+			System.out.println(listeCaisse.get(i).getOrdonnee());
+			g.drawImage(caisse.getImage(), listeCaisse.get(i).getAbcisse(),listeCaisse.get(i).getOrdonnee(),listeCaisse.get(i).getHauteur(),listeCaisse.get(i).getLargeur(),null);
+			g.drawImage(arrivee.getImage(), listeCaseArrivee.get(i).getAbcisse(),listeCaseArrivee.get(i).getOrdonnee(),listeCaseArrivee.get(i).getHauteur(),listeCaseArrivee.get(i).getLargeur(), null);
 	    }
 	    
+	    mur = new ImageIcon("../mur.jpeg");
 	    for (int l=0;l<NombreMurs;l++){
 	    	g.drawImage(mur.getImage(), listeMur.get(l).getAbcisse(),listeMur.get(l).getOrdonnee(),listeMur.get(l).getHauteur(),listeMur.get(l).getLargeur(),null);
-	    }*/
+	    }
 	}
 	
 	
