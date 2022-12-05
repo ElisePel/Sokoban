@@ -45,8 +45,11 @@ public class Plateau {
 	public Plateau() {
 
 	}
+<<<<<<< HEAD
+=======
 		
 
+>>>>>>> 6e2f0e29166bcb369e5ec829dc3611c1f56a622a
 	
 	public Plateau(int fichier) {
 		switch (fichier) {
@@ -130,6 +133,13 @@ public class Plateau {
 		}
 		
 	}
+<<<<<<< HEAD
+
+
+	
+	
+=======
+>>>>>>> 6e2f0e29166bcb369e5ec829dc3611c1f56a622a
 	
 	
 	

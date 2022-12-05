@@ -2,6 +2,7 @@ package code;
 
 import java.awt.EventQueue;
 
+
 import javax.swing.JButton;
 
 import javax.swing.JFrame;
@@ -21,7 +22,11 @@ import java.awt.event.KeyEvent;
 
 public class MainWindow extends JFrame {
 
+<<<<<<< HEAD
 	private MyPanel myPanel = new MyPanel();
+=======
+	private MyPanel MyPanel;
+>>>>>>> 71a9eb4a70ca158b77e883388709fc0aa509a843
 	private JButton btnJouer;
 	private JButton btnNiveaux;
 	private JButton btnAide;
@@ -55,21 +60,31 @@ public class MainWindow extends JFrame {
 		setBounds(100, 100, 450, 300);
 
 		// On modifie le ContentPane
-		myPanel = new MyPanel(this) ;
-		myPanel.setLayout(null);
-		myPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		MyPanel = new MyPanel(this) ;
+		MyPanel.setLayout(null);
+		MyPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		//...
 		setTitle("Sokoban");
 
 		
 		JButton btnJouer = new JButton("Jouer");
-		btnJouer.setBounds(30, 200, 70, 21);
-		myPanel.add(btnJouer);
+		btnJouer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					 // Création de la boite en mémoire
+					 FenetreJouer JouerFenetre = new FenetreJouer();
+	
+					 // Affichage de la boite
+					 JouerFenetre.setVisible(true);
+			}
+		});
 		
-		JButton btnNiveaux = new JButton("Niveaux");
+		btnJouer.setBounds(30, 240, 70, 21);
+		MyPanel.add(btnJouer);
+		
+		/*JButton btnNiveaux = new JButton("Niveaux");
 		btnNiveaux.setBounds(120, 200, 80, 21);
-		myPanel.add(btnNiveaux);
+		myPanel.add(btnNiveaux);*/
 		
 		JButton btnAide = new JButton("Aide");
 		btnAide.addActionListener(new ActionListener() {
@@ -82,9 +97,9 @@ public class MainWindow extends JFrame {
 			}
 		});
 
-		btnAide.setBounds(220, 200, 70, 21);
-		myPanel.add(btnAide);
-		this.setContentPane(myPanel);
+		btnAide.setBounds(350, 240, 70, 21);
+		MyPanel.add(btnAide);
+		this.setContentPane(MyPanel);
 
 	}
 	
@@ -94,6 +109,7 @@ public class MainWindow extends JFrame {
 	 //plateau = new Plateau("../nv1.txt");
 	 Graphics bufferGraphics;
 	 Image offscreen;
+	 ImageIcon debut = new ImageIcon("../SOKO-BAGNE.jpg");
 	 // On crée une image en mémoire de la taille du ContentPane
 	 offscreen = createImage(this.getContentPane().getWidth(),this.getContentPane().getHeight());
 	 // On récupère l'objet de type Graphics permettant de dessiner dans cette image
@@ -113,8 +129,17 @@ public class MainWindow extends JFrame {
 	 
 	 //if (plateau!=null & plateau.getGagne()==false) {
 
+<<<<<<< HEAD
+	 bufferGraphics.drawImage(debut.getImage(), 0,0,450,300,null);
+	 
+	// plateau.afficher(bufferGraphics);
+
+		 /*plateau.afficher(bufferGraphics);
+	//	 plateau.afficher(bufferGraphics);
+=======
 	 plateau.afficher(bufferGraphics);
 
+>>>>>>> 6e2f0e29166bcb369e5ec829dc3611c1f56a622a
 	 /*}
 	 else if (plateau.getGagne()==true){
 		 plateau.afficherGagner(bufferGraphics);
@@ -126,6 +151,9 @@ public class MainWindow extends JFrame {
 	 g.drawImage(offscreen,0,0,null);
 	 
 	}
+	
+	
+	
 
 	/*    
 	
@@ -141,8 +169,15 @@ public class MainWindow extends JFrame {
 				plateau.DeplacementBas();
 		}
 		dessiner(this.getContentPane().getGraphics());
-<<<<<<< HEAD
+
 	}*/
 	
+<<<<<<< HEAD
+
+	
+	
+}
+=======
 	}
 
+>>>>>>> 6e2f0e29166bcb369e5ec829dc3611c1f56a622a
