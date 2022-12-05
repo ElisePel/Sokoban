@@ -36,7 +36,6 @@ public class Plateau {
 		CaseArrivee[] listeCaseArrivee = new CaseArrivee[NombreCaisses];
 		CaseMur[] listeMur = new CaseMur[NombreElements-1-2*NombreCaisses];
 	}
-<<<<<<< HEAD
 	
 	public Plateau(String nomfichier) {
 		int type,a,o,i=0,k=0,m=0;
@@ -85,11 +84,7 @@ public class Plateau {
 	    	 System.out.println("Impossible d'ouvrir le fichier !");
 		}*/
 	}
-=======
 
-	
-	
->>>>>>> ceaf9ebd1a1187b7b0a347368e6e0dee02f64a80
 
 	
 	

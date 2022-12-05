@@ -19,13 +19,10 @@ import javax.swing.ImageIcon;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
+public class FenetreJouer extends JFrame {
 
-public class MainWindow extends JFrame {
 
-	private MyPanel MyPanel;
-	private JButton btnJouer;
-	private JButton btnNiveaux;
-	private JButton btnAide;
+	private MyPanelJouer myPanel;
 	private Plateau plateau;
 	private Personnage perso;
 
@@ -36,7 +33,7 @@ public class MainWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainWindow frame = new MainWindow();
+					FenetreJouer frame = new FenetreJouer();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,62 +45,27 @@ public class MainWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MainWindow() {
-		plateau = new Plateau("nv1.txt");
+	public FenetreJouer() {
+		plateau = new Plateau("../nv1.txt");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 
 		// On modifie le ContentPane
-		MyPanel = new MyPanel(this) ;
-		MyPanel.setLayout(null);
-		MyPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		myPanel = new MyPanelJouer(this) ;
+		myPanel.setLayout(null);
+		myPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		myPanel.setVisible(true);
 
 		//...
 		setTitle("Sokoban");
-
 		
-		JButton btnJouer = new JButton("Jouer");
-		btnJouer.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-					 // Création de la boite en mémoire
-					 FenetreJouer JouerFenetre = new FenetreJouer();
-	
-					 // Affichage de la boite
-					 JouerFenetre.setVisible(true);
-			}
-		});
-		
-		btnJouer.setBounds(30, 240, 70, 21);
-		MyPanel.add(btnJouer);
-		
-		/*JButton btnNiveaux = new JButton("Niveaux");
-		btnNiveaux.setBounds(120, 200, 80, 21);
-		myPanel.add(btnNiveaux);*/
-		
-		JButton btnAide = new JButton("Aide");
-		btnAide.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-					 // Création de la boite en mémoire
-					 FenetreAide AideFenetre = new FenetreAide();
-	
-					 // Affichage de la boite
-					 AideFenetre.setVisible(true);
-			}
-		});
-
-		btnAide.setBounds(350, 240, 70, 21);
-		MyPanel.add(btnAide);
-		this.setContentPane(MyPanel);
-
+		this.setContentPane(myPanel);
 	}
-	
-
 	
 	public void dessiner(Graphics g)
 	{
 	 Graphics bufferGraphics;
 	 Image offscreen;
-	 ImageIcon debut = new ImageIcon("../SOKO-BAGNE.jpg");
 	 // On crée une image en mémoire de la taille du ContentPane
 	 offscreen = createImage(this.getContentPane().getWidth(),this.getContentPane().getHeight());
 	 // On récupère l'objet de type Graphics permettant de dessiner dans cette image
@@ -123,9 +85,9 @@ public class MainWindow extends JFrame {
 	 
 	 //if (plateau!=null & plateau.getGagne()==false) {
 
-	 bufferGraphics.drawImage(debut.getImage(), 0,0,450,300,null);
+
 	 
-	// plateau.afficher(bufferGraphics);
+	 plateau.afficher(bufferGraphics);
 
 		 /*plateau.afficher(bufferGraphics);
 	//	 plateau.afficher(bufferGraphics);
@@ -140,28 +102,5 @@ public class MainWindow extends JFrame {
 	 g.drawImage(offscreen,0,0,null);
 	 
 	}
-	
-	
-	
 
-	/*    
-	
-	/*private void keyPressEvent(java.awt.event.KeyEvent e) {
-		switch(e.getKeyCode()) {
-			case (KeyEvent.VK_RIGHT ) :
-				plateau.DeplacementDroite();
-			case (KeyEvent.VK_LEFT):
-				plateau.DeplacementGauche();
-			case (KeyEvent.VK_UP ) :
-				plateau.DeplacementHaut();
-			case (KeyEvent.VK_DOWN):
-				plateau.DeplacementBas();
-		}
-		dessiner(this.getContentPane().getGraphics());
-
-	}*/
-	
-
-	
-	
 }
