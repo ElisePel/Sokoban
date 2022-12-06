@@ -12,12 +12,20 @@ import java.util.ArrayList; // import the ArrayList class
  *
  */
 public class Plateau {
-	/**
-	 * attributs :
-	 * largeur : entier contenant la largeur de la grille
-	 * hauteur : entier contenant la hauteur de la grille
-	 * cases : HashMap qui a pour valeur case et pour clÃ© coordonnÃ©es
-	 */
+/**
+ *  NombreCaisses : entier qui enregistre le nombre de caisses du niveau
+	NombreElements : entier qui enregistre le nombre d'element du niveau
+	NombreMurs : entier qui enregistre le nombre de murs du niveau
+	niveau : entier qui enregistre le numéro du niveau
+    perso : perssonage référent de la classe Personnage
+    gagne : boolean, false si le joueur n'a pas gagné
+    caisse : caisse référent de la classe Caisse
+    casearrivee : case arrivee référent de la classe CaseArrivee
+    casemur : case mur référent de la classe CaseMur
+    listeCaisse : liste de caisse
+    listeCaseArrivee : liste de case arrivee
+    listeMur : liste de mur
+ */
 	protected int NombreCaisses = 1;
 	protected int NombreElements = 2;
 	protected int NombreMurs = 1;
@@ -40,9 +48,15 @@ public class Plateau {
 	}
 
 	
+	/**
+	 * Constructeur 
+	 * @param fichier : numero du niveau à afficher
+	 */
 	public Plateau(int fichier) {
 		niveau = fichier;
+		//hauteur
 		int h = 50;
+		//largeur
 		int l = 50;
 		switch (fichier) {
 			case 1 :
@@ -148,9 +162,10 @@ public class Plateau {
 	
 	
 	
-	/**
-	 * Constructeur par dÃ©fault de la classe Plateau
-	 */
+/**
+ * fonction qui permet de savoir si le joueur à gagner ou pas
+ * @return b : boolean
+ */
 	public boolean testerSiGagner() {
 		boolean b = true;
 	    int i=0;
@@ -610,7 +625,11 @@ public class Plateau {
 	        }
 	    }
 	}
-	
+
+/**
+ * fonction qui permet d'afficher le plateaua vec toute les cases
+ * @param g
+ */
 	
 	public void afficher(Graphics g){
 		ImageIcon personnage = new ImageIcon("../policier.png");
@@ -630,24 +649,32 @@ public class Plateau {
 	    }
 	}
 	
-	
+
+	/**
+	 * fonction qui permet d'afficher un message à la fin d'un niveau réussi
+	 * @param g
+	 */
 	public void afficherGagner(Graphics g){
 		ImageIcon fin = new ImageIcon("../bravo.png");
 	    g.drawImage(fin.getImage(), 225,125,300,300,null);
 	}
 	
 	
+	/**
+	 * fonction qui permet de savoir si le joueur a gagné ou pas
+	 * @return boolean
+	 */
 	public boolean getGagne(){
 	    return gagne;
 	}
 	
 	
+	/**
+	 * fonction qui retourne le numero du niveau
+	 * @return niveau
+	 */
 	public int getniveau() {
 		return niveau;
 	}
-	
-	
-	
-
 	
 }

@@ -1,7 +1,7 @@
 package code;
 
 /**
- * permet d'instancier un personnage
+ * permet d'instancier une caisse
  * @author Claire MÃ©ziÃ¨res et Elise Pellegry
  * @version 1.0 08/03/2022
  */
@@ -10,8 +10,10 @@ package code;
 public class Caisse {
 	/**
 	 * attributs
-	 * i : correspond Ã  l'abscisse
-	 * j : correspond Ã  l'ordonnÃ©e
+	 * abcisseCaisse : abscisse de la caisse
+	 * ordonneeCaisse : ordonnee de la caisse
+	 * hauteurCaisse : hauteur de la caisse
+	 * largeurCaisse : largeur de la caisse
 	 */
 	
 	private int abcisseCaisse = 300;
@@ -25,11 +27,11 @@ public class Caisse {
 	}
 
 	/**
-	 * Constructeur de la classe Personnage
-	 * @param aP abscisse du personnage
-	 * @param oP ordonnÃ©e du personnage
-	 * @param h hauteur du personnage
-	 * @param l largeur du personnage
+	 * Constructeur de la classe Caisse
+	 * @param aP abscisse de la caisse
+	 * @param oP ordonnÃ©e de la caisse
+	 * @param h hauteur de la caisse
+	 * @param l largeur de la caisse
 	 */
 	public Caisse(int aC, int oC,int h, int l)
 	{

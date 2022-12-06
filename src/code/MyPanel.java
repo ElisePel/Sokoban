@@ -8,7 +8,10 @@ class MyPanel extends JPanel {
  // Réference sur la fenêtre principale
  private MainWindow mainWindow;
  
-
+/**
+ * constructeur
+ * @param mWindow
+ */
  public MyPanel(MainWindow mWindow) {
 	 mainWindow = mWindow;
  }

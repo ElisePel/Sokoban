@@ -7,14 +7,19 @@ package code;
 public class Personnage {
 	/**
 	 * attributs
-	 * i : correspond Ã  l'abscisse
-	 * j : correspond Ã  l'ordonnÃ©e
+	 * abcissePersonnage : abscisse du personnage
+	 * ordonneePersonnage : ordonnee du personnage
+	 * hauteurPersonnage : hauteur du personnage
+	 * largeurPersonnage : largeur du personnage
 	 */
 	private int abcissePersonnage = 200;
     private int ordonneePersonnage = 200;
     private int hauteurPersonnage;
     private int largeurPersonnage;
     
+    /**
+     * constructeur vide
+     */
     public Personnage() {
     	
     }

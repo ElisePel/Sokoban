@@ -66,6 +66,10 @@ public class FenetreJouer extends JFrame {
 		this.setContentPane(myPanel);
 	}
 	
+	/**
+	 * fonction qui affiche qui une fenetre 
+	 * @param g
+	 */
 	public void dessiner(Graphics g){
 	 Graphics bufferGraphics;
 	 Image offscreen;
@@ -117,7 +121,10 @@ public class FenetreJouer extends JFrame {
 	 
 	}
 	
-	
+	/**
+	 * fonction qui permet de recuperer les informations des touches du clavier pour le déplacement des objets
+	 * @param e
+	 */
 	private void myKeyPressEvent(KeyEvent e) {
 	switch(e.getKeyCode()) {
 		case (KeyEvent.VK_RIGHT ) :

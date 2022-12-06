@@ -1,30 +1,41 @@
 package code;
 
 /**
- * permet d'instancier un personnage
+ * permet d'instancier une case d'arrivee
  * @author Claire MÃ©ziÃ¨res et Elise Pellegry
  * @version 1.0 08/03/2022
  */
 
 
 public class CaseArrivee{
+	/**
+	 * attributs
+	 * abcisseCaisse : abscisse de la case arrivee
+	 * ordonneeCaisse : ordonnee de la case arrivee
+	 * hauteurCaisse : hauteur de la case arrivee
+	 * largeurCaisse : largeur de la case arrivee
+	 * arrivee : boolean pour savoir si la case arrivee est rempli ou pas
+	 */
 	private int abscisseCaseA = 300;
 	private int ordonneeCaseA = 300;
 	private int hauteurCaseA;
 	private int largeurCaseA;
 	private boolean arrivee;
 	
+	/**
+	 * constructeur vide
+	 */
 	public CaseArrivee()
 	{
 
 	}
 
 	/**
-	 * Constructeur de la classe Personnage
-	 * @param aP abscisse du personnage
-	 * @param oP ordonnÃ©e du personnage
-	 * @param h hauteur du personnage
-	 * @param l largeur du personnage
+	 * Constructeur de la classe CaseArrivee
+	 * @param aP abscisse de la case arrivee
+	 * @param oP ordonnÃ©e de la case arrivee
+	 * @param h hauteur de la case arrivee
+	 * @param l largeur de la case arrivee
 	 */
 	public CaseArrivee(int aC, int oC,int h, int l, boolean b)
 	{

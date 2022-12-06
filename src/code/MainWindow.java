@@ -49,7 +49,6 @@ public class MainWindow extends JFrame {
 		MyPanel.setLayout(null);
 		MyPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		//...
 		setTitle("Sokoban");
 
 		
@@ -67,7 +66,7 @@ public class MainWindow extends JFrame {
 		btnJouer.setBounds(30, 430, 70, 21);
 		MyPanel.add(btnJouer);
 		
-	
+		//ajout d'un bouton aide
 		JButton btnAide = new JButton("Aide");
 		btnAide.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -85,7 +84,10 @@ public class MainWindow extends JFrame {
 
 	}
 	
-
+/**
+ * fonction dessiner qui permet l'affichage de notre jeu
+ * @param g
+ */
 	
 	public void dessiner(Graphics g){
 	 Graphics bufferGraphics;
