@@ -1,7 +1,7 @@
 package code;
 
 import java.awt.EventQueue;
-
+import java.awt.Font;
 
 import javax.swing.JButton;
 
@@ -62,6 +62,20 @@ public class FenetreJouer extends JFrame {
 		myPanel.setVisible(true);
 
 		setTitle("Sokoban");
+		
+		JButton btnMenu = new JButton("Menu Principal");
+		btnMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 // Création de la boite en mémoire
+				MainWindow main = new MainWindow();
+	
+					 // Affichage de la boite
+				main.setVisible(true);
+			}
+		});
+		btnMenu.setBounds(500, 20, 130, 21);
+		btnMenu.setFocusable(false);
+		myPanel.add(btnMenu);
 		
 		this.setContentPane(myPanel);
 	}

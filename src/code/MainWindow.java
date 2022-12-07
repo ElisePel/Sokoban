@@ -6,7 +6,6 @@ import java.awt.EventQueue;
 import javax.swing.JButton;
 
 import javax.swing.JFrame;
-//import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -56,10 +55,10 @@ public class MainWindow extends JFrame {
 		btnJouer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					 // Création de la boite en mémoire
-				FenetreJouer JouerFenetre = new FenetreJouer(1);
+				Fenetre Fenetre = new Fenetre();
 	
 					 // Affichage de la boite
-				JouerFenetre.setVisible(true);
+				Fenetre.setVisible(true);
 			}
 		});
 		
