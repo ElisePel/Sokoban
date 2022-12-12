@@ -69,7 +69,7 @@ public class Fenetre extends JFrame {
 		btnValider.setBounds(300, 300, 150, 40);
 		MyPanel.add(btnValider);
 				
-		JLabel texte = new JLabel("Entre ton nom");
+		JLabel texte = new JLabel("Entre ton pseudo ");
 		texte.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 25));
 		texte.setBounds(300, 17, 300, 40);
 		MyPanel.add(texte);

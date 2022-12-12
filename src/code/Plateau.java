@@ -30,6 +30,7 @@ public class Plateau {
 	protected int NombreElements = 2;
 	protected int NombreMurs = 1;
 	protected int niveau;
+	protected int score = 0;
     protected Personnage perso = new Personnage();
     protected boolean gagne = false;
     protected Caisse caisse = new Caisse();
@@ -675,6 +676,14 @@ public class Plateau {
 	 */
 	public int getniveau() {
 		return niveau;
+	}
+	
+	public void setscore(int s) {
+		score = score + s;
+	}
+	
+	public int getscore() {
+		return score;
 	}
 	
 }

@@ -97,6 +97,7 @@ public class FenetreJouer extends JFrame {
 		 JButton btnReco = new JButton("Recommencer");
 			btnReco.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					plateau.setscore(-1);
 					plateau = new Plateau(plateau.getniveau());
 					btnReco.setVisible(true);
 				}
@@ -108,6 +109,7 @@ public class FenetreJouer extends JFrame {
 	 }
 
 	 else if (plateau.getGagne()==true & plateau.getniveau() == 1){
+		 plateau.setscore(1);
 		 plateau.afficherGagner(bufferGraphics);
 		 JButton btnsuivant = new JButton("Niveau suivant");
 		 btnsuivant.addActionListener(new ActionListener() {
