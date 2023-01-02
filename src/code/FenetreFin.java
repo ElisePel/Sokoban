@@ -103,11 +103,11 @@ public class FenetreFin extends JFrame {
 		myPanel.add(btnRecoJ);
 		
 		
-		java.sql.Connection con = null;
+		java.sql.Connection connnecteur = null;
         try
         {           
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Sokoban","root","root");
-            Statement st = con.createStatement();
+        	connnecteur = DriverManager.getConnection("jdbc:mysql://localhost:3306/Sokoban","root","root");
+            Statement st = connnecteur.createStatement();
             //st.executeUpdate("INSERT INTO Table_Score (Pseudo,Score) VALUES"+ "('Claiire la best',8)");
             ResultSet rs = st.executeQuery("SELECT * FROM Table_Score ORDER BY Score DESC");
             while(rs.next())
