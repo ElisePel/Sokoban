@@ -81,7 +81,7 @@ public class FenetreJouer extends JFrame {
 	}
 	
 	/**
-	 * fonction qui affiche qui une fenetre 
+	 * fonction qui affiche une fenetre 
 	 * @param g
 	 */
 	public void dessiner(Graphics g){
@@ -97,7 +97,7 @@ public class FenetreJouer extends JFrame {
 		 JButton btnReco = new JButton("Recommencer");
 			btnReco.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					plateau.setscore(-1);
+					plateau.setscore(
 					plateau = new Plateau(plateau.getniveau());
 					btnReco.setVisible(true);
 				}
