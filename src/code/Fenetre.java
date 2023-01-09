@@ -6,11 +6,11 @@ import java.awt.Image;
 
 import javax.swing.JFrame;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JEditorPane;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -60,27 +60,6 @@ public class Fenetre extends JFrame {
 		JTextField pseudo = new JTextField();
 		pseudo.setBounds(280, 100, 200, 30);
 		MyPanel.add(pseudo);
-		System.out.println(pseudo.getText());
-		
-		java.sql.Connection connecteur = null;
-        try
-        {           
-        	connecteur = DriverManager.getConnection("jdbc:mysql://localhost:3306/Sokoban","root","root");
-            Statement st = connecteur.createStatement();
-           // String requete = "INSERT INTO Table_Score VALUES('','"this.getText().pseudo"');";
-            st.executeUpdate("INSERT INTO Table_Score (Pseudo, Score) VALUES"+ "('pseudo.getText()',0)");
-           // st.executeUpdate(requete);
-            connecteur.close();
-        }
-        catch(SQLException e)
-        {
-	       System.out.println(e);
-	    }
-        
-        
-		
-		
-		
 		
 		JButton btnValider = new JButton("Valider");
 		
@@ -89,10 +68,37 @@ public class Fenetre extends JFrame {
 		btnValider.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 // Création de la boite en mémoire
-				FenetreJouer JouerFenetre = new FenetreJouer(1);
+				java.sql.Connection connecteur = null;
+		        try
+		        {           
+		        	connecteur = DriverManager.getConnection("jdbc:mysql://localhost:3306/Sokoban","root","root");
+		            Statement st = connecteur.createStatement();
+		            
+		            PreparedStatement pst = connecteur.prepareStatement("select Pseudo from Table_Score where Pseudo = ? ");
+		            //I assumed that their is id column in Members.
+		            pst.setString(1, pseudo.getText());
+		            ResultSet resultSet = pst.executeQuery();
+		            if(resultSet.next()){
+		                 // prompt users already exists
+		            	st.executeUpdate("UPDATE Table_Score SET Score = Score + 2 WHERE Pseudo ='" + pseudo.getText() + "'" );
+		            	
+		            }
+		            else{
+		                //add to database
+		            	st.executeUpdate("INSERT INTO Table_Score (Pseudo,Score) VALUES('"+pseudo.getText()+"',2)");
+		            }
+		            
+					
+		            connecteur.close();
+		        }
+		        catch(SQLException e2)
+		        {
+			       System.out.println(e2);
+			    }
+				FenetreFin Fenetre = new FenetreFin();
 	
 					 // Affichage de la boite
-				JouerFenetre.setVisible(true);
+				Fenetre.setVisible(true);
 			}
 		});
 		btnValider.setBounds(300, 300, 150, 40);

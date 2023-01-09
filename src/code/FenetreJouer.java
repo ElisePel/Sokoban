@@ -1,7 +1,6 @@
 package code;
 
 import java.awt.EventQueue;
-import java.awt.Font;
 
 import javax.swing.JButton;
 
@@ -97,7 +96,6 @@ public class FenetreJouer extends JFrame {
 		 JButton btnReco = new JButton("Recommencer");
 			btnReco.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					plateau.setscore(
 					plateau = new Plateau(plateau.getniveau());
 					btnReco.setVisible(true);
 				}
@@ -109,7 +107,6 @@ public class FenetreJouer extends JFrame {
 	 }
 
 	 else if (plateau.getGagne()==true & plateau.getniveau() == 1){
-		 plateau.setscore(1);
 		 plateau.afficherGagner(bufferGraphics);
 		 JButton btnsuivant = new JButton("Niveau suivant");
 		 btnsuivant.addActionListener(new ActionListener() {
@@ -127,7 +124,7 @@ public class FenetreJouer extends JFrame {
 		this.setContentPane(myPanel);
 	}
 	 else if(plateau.getGagne()==true && plateau.getniveau() == 2){
-		 FenetreFin fin = new FenetreFin();
+		 Fenetre fin = new Fenetre();
 		 // Affichage de la boite
 		 fin.setVisible(true);
 	 }
