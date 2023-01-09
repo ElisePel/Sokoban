@@ -678,12 +678,12 @@ public class Plateau {
 		return niveau;
 	}
 	
-	public void setscore(int s) {
+/*	public void setscore(int s) {
 		score = score + s;
 	}
 	
 	public int getscore() {
 		return score;
-	}
+	}*/
 	
 }

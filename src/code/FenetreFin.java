@@ -8,29 +8,23 @@ import javax.swing.JButton;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-//import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
 import java.awt.event.ActionEvent;
 import java.awt.Graphics;
 import java.awt.Image;
 
-import java.awt.event.KeyEvent;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import javax.swing.JTable;
 
 public class FenetreFin extends JFrame {
 
 
 	private MyPanelFin myPanel;
-	private Plateau plateau;
 
 	/**
 	 * Launch the application.
@@ -108,7 +102,6 @@ public class FenetreFin extends JFrame {
         {           
         	connecteur = DriverManager.getConnection("jdbc:mysql://localhost:3306/Sokoban","root","root");
             Statement st = connecteur.createStatement();
-            //st.executeUpdate("INSERT INTO Table_Score (Pseudo,Score) VALUES"+ "('Claiire la best',8)");
             ResultSet rs = st.executeQuery("SELECT * FROM Table_Score ORDER BY Score DESC");
             while(rs.next())
             {
@@ -138,25 +131,30 @@ public class FenetreFin extends JFrame {
 		ts1.setBounds(450, 320, 300, 40);
 		myPanel.add(ts1);
 		
-		JLabel t2 = new JLabel(listepseudo.get(1));
-		t2.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 25));
-		t2.setBounds(150, 360, 300, 40);
-		myPanel.add(t2);
-		
-		JLabel ts2 = new JLabel(listescore.get(1));
-		ts2.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 25));
-		ts2.setBounds(450, 360, 300, 40);
-		myPanel.add(ts2);
+		if( listepseudo.size() > 1) {
+			JLabel t2 = new JLabel(listepseudo.get(1));
+			t2.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 25));
+			t2.setBounds(150, 360, 300, 40);
+			myPanel.add(t2);
 			
-		JLabel t3 = new JLabel(listepseudo.get(2));
-		t3.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 25));
-		t3.setBounds(150, 400, 300, 40);
-		myPanel.add(t3);
+			JLabel ts2 = new JLabel(listescore.get(1));
+			ts2.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 25));
+			ts2.setBounds(450, 360, 300, 40);
+			myPanel.add(ts2);
+		}
 		
-		JLabel ts3 = new JLabel(listescore.get(2));
-		ts3.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 25));
-		ts3.setBounds(450, 400, 300, 40);
-		myPanel.add(ts3);
+		if( listepseudo.size() > 2){
+			JLabel t3 = new JLabel(listepseudo.get(2));
+			t3.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 25));
+			t3.setBounds(150, 400, 300, 40);
+			myPanel.add(t3);
+			
+			JLabel ts3 = new JLabel(listescore.get(2));
+			ts3.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 25));
+			ts3.setBounds(450, 400, 300, 40);
+			myPanel.add(ts3);
+		}
+		
 		
 		
 		this.setContentPane(myPanel);

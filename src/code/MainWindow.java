@@ -55,10 +55,10 @@ public class MainWindow extends JFrame {
 		btnJouer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					 // Création de la boite en mémoire
-				Fenetre Fenetre = new Fenetre();
+				FenetreJouer FenetreJ = new FenetreJouer(1);
 	
 					 // Affichage de la boite
-				Fenetre.setVisible(true);
+				FenetreJ.setVisible(true);
 			}
 		});
 		
