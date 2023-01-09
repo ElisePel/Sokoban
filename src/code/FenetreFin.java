@@ -103,11 +103,11 @@ public class FenetreFin extends JFrame {
 		myPanel.add(btnRecoJ);
 		
 		
-		java.sql.Connection connnecteur = null;
+		java.sql.Connection connecteur = null;
         try
         {           
-        	connnecteur = DriverManager.getConnection("jdbc:mysql://localhost:3306/Sokoban","root","root");
-            Statement st = connnecteur.createStatement();
+        	connecteur = DriverManager.getConnection("jdbc:mysql://localhost:3306/Sokoban","root","root");
+            Statement st = connecteur.createStatement();
             //st.executeUpdate("INSERT INTO Table_Score (Pseudo,Score) VALUES"+ "('Claiire la best',8)");
             ResultSet rs = st.executeQuery("SELECT * FROM Table_Score ORDER BY Score DESC");
             while(rs.next())
@@ -115,6 +115,7 @@ public class FenetreFin extends JFrame {
             	listepseudo.add(rs.getString("Pseudo"));
             	listescore.add(rs.getString("Score"));
             }
+            connecteur.close();
         }
         catch(SQLException e)
         {

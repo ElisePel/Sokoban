@@ -10,8 +10,14 @@ import javax.swing.JEditorPane;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
+
 import java.awt.Font;
 
 public class Fenetre extends JFrame {
@@ -51,11 +57,34 @@ public class Fenetre extends JFrame {
 		setContentPane(MyPanel);
 		MyPanel.setLayout(null);
 		
-		JEditorPane editorPane = new JEditorPane();
-		editorPane.setBounds(280, 100, 200, 30);
-		MyPanel.add(editorPane);
+		JTextField pseudo = new JTextField();
+		pseudo.setBounds(280, 100, 200, 30);
+		MyPanel.add(pseudo);
+		System.out.println(pseudo.getText());
+		
+		java.sql.Connection connecteur = null;
+        try
+        {           
+        	connecteur = DriverManager.getConnection("jdbc:mysql://localhost:3306/Sokoban","root","root");
+            Statement st = connecteur.createStatement();
+           // String requete = "INSERT INTO Table_Score VALUES('','"this.getText().pseudo"');";
+            st.executeUpdate("INSERT INTO Table_Score (Pseudo, Score) VALUES"+ "('pseudo.getText()',0)");
+           // st.executeUpdate(requete);
+            connecteur.close();
+        }
+        catch(SQLException e)
+        {
+	       System.out.println(e);
+	    }
+        
+        
+		
+		
+		
 		
 		JButton btnValider = new JButton("Valider");
+		
+		
 		btnValider.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 25));
 		btnValider.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
