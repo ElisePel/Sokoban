@@ -80,7 +80,7 @@ public class FenetreJouer extends JFrame {
 	}
 	
 	/**
-	 * fonction qui affiche qui une fenetre 
+	 * fonction qui affiche une fenetre 
 	 * @param g
 	 */
 	public void dessiner(Graphics g){
