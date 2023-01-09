@@ -1,9 +1,16 @@
 package code;
 
+/**
+ * permet d'instancier la fenêtre pour enregistrer son pseudo
+ * @author Claire Mezieres et Elise Pellegry
+ */
+
+/**
+ * bibliothèques
+ */
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Image;
-
 import javax.swing.JFrame;
 import javax.swing.border.EmptyBorder;
 import javax.swing.ImageIcon;
@@ -57,38 +64,44 @@ public class Fenetre extends JFrame {
 		setContentPane(MyPanel);
 		MyPanel.setLayout(null);
 		
+		//zone qui permet à l'utilisateur de saisir son nom
+		JLabel texte = new JLabel("Entre ton pseudo ");
+		texte.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 25));
+		texte.setBounds(300, 17, 300, 40);
+		MyPanel.add(texte);
+		
 		JTextField pseudo = new JTextField();
 		pseudo.setBounds(280, 100, 200, 30);
 		MyPanel.add(pseudo);
 		
+		//création d'un bouton valider 
 		JButton btnValider = new JButton("Valider");
-		
-		
 		btnValider.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 25));
 		btnValider.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 // Création de la boite en mémoire
 				java.sql.Connection connecteur = null;
 		        try
-		        {           
+		        {   
+		        	//on crée le connecteur à la base de données
 		        	connecteur = DriverManager.getConnection("jdbc:mysql://localhost:3306/Sokoban","root","root");
+		        	//création d'un statement 
 		            Statement st = connecteur.createStatement();
 		            
+		            //on vérifie si le pseudo saisie est dans la base de données
 		            PreparedStatement pst = connecteur.prepareStatement("select Pseudo from Table_Score where Pseudo = ? ");
-		            //I assumed that their is id column in Members.
 		            pst.setString(1, pseudo.getText());
 		            ResultSet resultSet = pst.executeQuery();
 		            if(resultSet.next()){
-		                 // prompt users already exists
+		                 // si le pseudo existe on modifie le score
 		            	st.executeUpdate("UPDATE Table_Score SET Score = Score + 2 WHERE Pseudo ='" + pseudo.getText() + "'" );
 		            	
 		            }
 		            else{
-		                //add to database
-		            	st.executeUpdate("INSERT INTO Table_Score (Pseudo,Score) VALUES('"+pseudo.getText()+"',2)");
+		                // si le pseudo n'existe pas on ajoute un nouvel individu avec son pseudo et son score
+		            	st.executeUpdate("INSERT INTO Table_Score (Pseudo,Score) VALUES('" + pseudo.getText() + "',2)");
 		            }
-		            
-					
+		            //on ferme le connecteur
 		            connecteur.close();
 		        }
 		        catch(SQLException e2)
@@ -103,11 +116,6 @@ public class Fenetre extends JFrame {
 		});
 		btnValider.setBounds(300, 300, 150, 40);
 		MyPanel.add(btnValider);
-				
-		JLabel texte = new JLabel("Entre ton pseudo ");
-		texte.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 25));
-		texte.setBounds(300, 17, 300, 40);
-		MyPanel.add(texte);
 	}
 
 /**

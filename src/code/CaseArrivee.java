@@ -2,8 +2,7 @@ package code;
 
 /**
  * permet d'instancier une case d'arrivee
- * @author Claire MÃ©ziÃ¨res et Elise Pellegry
- * @version 1.0 08/03/2022
+ * @author Claire Mezieres et Elise Pellegry
  */
 
 

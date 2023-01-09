@@ -1,18 +1,17 @@
 package code;
-
+/**
+ * permet d'instancier la fenêtre aide
+ * @author Claire Mezieres et Elise Pellegry
+ */
 import java.awt.EventQueue;
-
 import javax.swing.JButton;
-
 import javax.swing.JFrame;
-//import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.ActionEvent;
 import java.awt.Graphics;
 import java.awt.Image;
-
 import java.awt.event.KeyEvent;
 
 public class FenetreJouer extends JFrame {
@@ -50,18 +49,19 @@ public class FenetreJouer extends JFrame {
 			}
 		});
 		
+		//on crée le plateau en fonction d'une niveau demandé
 		plateau = new Plateau(niv);
 				
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 750, 550);
 
 		// On modifie le ContentPane
-		
 		myPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		myPanel.setVisible(true);
 
 		setTitle("Sokoban");
 		
+		//creation d'un bouton pour revenir on menu principal
 		JButton btnMenu = new JButton("Menu Principal");
 		btnMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -91,11 +91,14 @@ public class FenetreJouer extends JFrame {
 	 // On récupère l'objet de type Graphics permettant de dessiner dans cette image
 	 bufferGraphics = offscreen.getGraphics();
 
+	 //on a plusieurs cas, si l'utilisateur ne gagne pas encore
 	 if (plateau.getGagne()==false) {
 		 plateau.afficher(bufferGraphics);
+		 //l'utilisateur peut recommencer s'il est bloqué
 		 JButton btnReco = new JButton("Recommencer");
 			btnReco.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					//ça remet le plateau
 					plateau = new Plateau(plateau.getniveau());
 					btnReco.setVisible(true);
 				}
@@ -106,6 +109,7 @@ public class FenetreJouer extends JFrame {
 			this.setContentPane(myPanel);
 	 }
 
+	 //si l'utilisateur termine le niveau 1, il peut passer au niveau suivant ou rejouer 
 	 else if (plateau.getGagne()==true & plateau.getniveau() == 1){
 		 plateau.afficherGagner(bufferGraphics);
 		 JButton btnsuivant = new JButton("Niveau suivant");
@@ -123,6 +127,8 @@ public class FenetreJouer extends JFrame {
 		myPanel.add(btnsuivant);
 		this.setContentPane(myPanel);
 	}
+	 
+	 //s'il termine le niveau 2, alors la dernière fenetre s'affiche : fenetre de fin du jeu
 	 else if(plateau.getGagne()==true && plateau.getniveau() == 2){
 		 Fenetre fin = new Fenetre();
 		 // Affichage de la boite

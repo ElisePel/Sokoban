@@ -1,5 +1,10 @@
 package code;
 
+/**
+ * permet d'instancier la fenêtre pour enregistrer son pseudo
+ * @author Claire Mezieres et Elise Pellegry
+ */
+
 import java.awt.EventQueue;
 import java.awt.Font;
 
@@ -15,6 +20,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -64,13 +70,19 @@ public class FenetreFin extends JFrame {
 		this.setContentPane(myPanel);
 	}
 	
+	
+/*
+ * fonction qui permet de dessiner la fenetre de fin
+ */
 	public void dessiner(Graphics g){
 		Graphics bufferGraphics;
 		Image offscreen;
 		
 		ImageIcon fin = new ImageIcon("../end.png");
 		
+		//liste pour enregistrer tous les pseudos
 		ArrayList<String> listepseudo = new ArrayList<String>();
+		//liste pour enregistrer tous les scores
 		ArrayList<String> listescore = new ArrayList<String>();
 		
 	    g.drawImage(fin.getImage(), 225,125,250,250,null);
@@ -83,12 +95,12 @@ public class FenetreFin extends JFrame {
 		 
 		 bufferGraphics.drawImage(fin.getImage(), 0,0,750,550,null);
 		 
-
+		 //bouton pour recommencer le jeu
 		 JButton btnRecoJ = new JButton("Recommencer le jeu");
 			btnRecoJ.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					//accéder au niveau 1
 					 FenetreJouer niveau1 = new FenetreJouer(1);
-					//plateau = new Plateau(1);
 					niveau1.setVisible(true);
 				}
 			});
@@ -96,12 +108,15 @@ public class FenetreFin extends JFrame {
 		btnRecoJ.setFocusable(false);
 		myPanel.add(btnRecoJ);
 		
-		
+		// Création de la boite en mémoire
 		java.sql.Connection connecteur = null;
         try
         {           
+        	//on crée le connecteur à la base de données
         	connecteur = DriverManager.getConnection("jdbc:mysql://localhost:3306/Sokoban","root","root");
+        	//création d'un statement 
             Statement st = connecteur.createStatement();
+            //on recupère tous les resultats de la base de données
             ResultSet rs = st.executeQuery("SELECT * FROM Table_Score ORDER BY Score DESC");
             while(rs.next())
             {
@@ -121,6 +136,7 @@ public class FenetreFin extends JFrame {
 		t.setBounds(200, 250, 500, 50);
 		myPanel.add(t);
 		
+		//on affiche les 3 premiers
 		JLabel t1 = new JLabel(listepseudo.get(0));
 		t1.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 25));
 		t1.setBounds(150, 320, 300, 40);
@@ -131,6 +147,7 @@ public class FenetreFin extends JFrame {
 		ts1.setBounds(450, 320, 300, 40);
 		myPanel.add(ts1);
 		
+		//on vérifie s'il y a bien plus d'une ligne dans la base de données
 		if( listepseudo.size() > 1) {
 			JLabel t2 = new JLabel(listepseudo.get(1));
 			t2.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 25));
@@ -143,6 +160,7 @@ public class FenetreFin extends JFrame {
 			myPanel.add(ts2);
 		}
 		
+		//on vérifie s'il y a bien plus de deux lignes dans la base de données
 		if( listepseudo.size() > 2){
 			JLabel t3 = new JLabel(listepseudo.get(2));
 			t3.setFont(new Font("Yu Gothic Medium", Font.PLAIN, 25));
@@ -155,12 +173,8 @@ public class FenetreFin extends JFrame {
 			myPanel.add(ts3);
 		}
 		
-		
-		
 		this.setContentPane(myPanel);
 		
-		
-			
 		 // On afficher l'image mémoire à l'écran
 		 g.drawImage(offscreen,0,0,null);
 	 

@@ -1,17 +1,16 @@
 package code;
 
+/**
+ * bibliotheques
+ */
 import java.awt.EventQueue;
-
-
 import javax.swing.JButton;
-
 import javax.swing.JFrame;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Graphics;
 import java.awt.Image;
-
 import javax.swing.ImageIcon;
 
 
